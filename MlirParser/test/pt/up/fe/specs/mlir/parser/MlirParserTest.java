@@ -13,26 +13,32 @@
 
 package pt.up.fe.specs.mlir.parser;
 
+import static org.junit.Assert.fail;
+
 import org.junit.Test;
 
 import pt.up.fe.specs.util.SpecsIo;
-import pt.up.fe.specs.util.SpecsLogs;
 import pt.up.fe.specs.util.utilities.TestResources;
 
 public class MlirParserTest {
 
     private static final TestResources TEST_RESOURCES = new TestResources("pt/up/fe/specs/mlir/parser");
 
-    @Test
-    public void test() {
-        var resource = TEST_RESOURCES.getResource("llvm_intrinsic.mlir");
+    public static void testParser(String resourceName) {
+        var resource = TEST_RESOURCES.getResource(resourceName);
         var parser = new MlirParser(SpecsIo.resourceToStream(resource.getResource()));
         try {
             var root = parser.Root();
             root.dump(" ");
         } catch (ParseException e) {
-            SpecsLogs.warn("Error message:\n", e);
+            e.printStackTrace();
+            fail(e.getMessage());
         }
+    }
+
+    @Test
+    public void test() {
+        testParser("llvm_intrinsic.mlir");
     }
 
 }
