@@ -14,3 +14,5 @@
 /JJTMlirParserState.java
 /MlirParserConstants.java
 /MlirParserTreeConstants.java
+/MlirParser.java
+/MlirParserTokenManager.java
