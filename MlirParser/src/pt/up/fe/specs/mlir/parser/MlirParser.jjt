@@ -1,303 +1,0 @@
-/**
- * JJTree template file created by SF JavaCC plugin 1.5.28+ wizard for JavaCC 1.5.0+
- */options{  static = false;}PARSER_BEGIN(MlirParser)package pt.up.fe.specs.mlir.parser;
-
-/**
- * Based on https://mlir.llvm.org/docs/LangRef/
- *
- * Changes:<br>
- * <li>bb-arg-list interpreted as block-arg-list</li>
- * <li>Added alias-name ::= bare-id</li>
- * <li>Added function-type ::= type</li>
- *
- * 
- */
-public class MlirParser{
-  /*  public static void main(String args [])  {    System.out.println("Reading from standard input...");    System.out.print("Enter an expression like \"1+(2+3)*var;\" :");    Mlir parser = new Mlir(System.in);    try    {      SimpleNode n = parser.Start();      n.dump("");      System.out.println("Thank you.");    }    catch (Exception e)    {      System.out.println("Oops.");      System.out.println(e.getMessage());    }  }
-  */}PARSER_END(MlirParser)SKIP :{  " "| "\t"| "\n"| "\r"| < "//" (~[ "\n", "\r" ])*    (      "\n"    | "\r"    | "\r\n"    ) >| < "/*" (~[ "*" ])* "*"    (      ~[ "/" ] (~[ "*" ])* "*"    )*    "/" >}TOKEN : /* LITERALS */{
-	< DIGIT : ["0"-"9"] > |
-	< HEX_DIGIT : ["0"-"9", "a"-"f", "A"-"F"] > |
-	< LETTER : ["a"-"z", "A"-"Z"] > |
-	//< ID_PUNCT: ["$", ".", "_", "-"] > |
-
-	< DECIMAL_LITERAL: (<DIGIT >)+ > |
-	< HEXADECIMAL_LITERAL: "0x" (<HEX_DIGIT >)+ > |
-	< FLOAT_LITERAL: (["-", "+"])?(["0"-"9"])+["."](["0"-"9"])*(["e","E"](["-", "+"])?(["0"-"9"])+)? > |
-	< STRING_LITERAL: "\"" ~["\"","\n", "\f", "\u000b", "\r"] >
-/*    < INTEGER_LITERAL :    < DECIMAL_LITERAL > ([ "l", "L" ])?  | < HEX_LITERAL > ([ "l", "L" ])?  | < OCTAL_LITERAL > ([ "l", "L" ])?     >| < #DECIMAL_LITERAL : [ "1"-"9" ] ([ "0"-"9" ])* >| < #HEX_LITERAL : "0" [ "x", "X" ] ([ "0"-"9", "a"-"f", "A"-"F" ])+ >| < #OCTAL_LITERAL : "0" ([ "0"-"7" ])* >*/
-}
-/* IDENTIFIERS */
-/*TOKEN : {  < IDENTIFIER :    < LETTER >    (      < LETTER >    | < DIGIT >    )* >| < #LETTER : [ "_", "a"-"z", "A"-"Z" ] >| < #DIGIT : [ "0"-"9" ] >}*/
-
-
-
-//< ID_PUNCT: ["$", ".", "_", "-"] > |
-void IdPunct(): { } {
-  "$" | "." | "_" | "-"
-}
-
-
-//bare-id ::= (letter|[_]) (letter|digit|[_$.])*
-void BareId(): { }
-{
-	( < LETTER > | "_") (< LETTER > | < DIGIT > | "_"| "$" | "." )*
-}
-
-// bare-id-list ::= bare-id (`,` bare-id)*
-void BareIdList(): { }
-{
-	BareId() ("," BareId())*
-}
-
-//suffix-id ::= (digit+ | ((letter|id-punct) (letter|id-punct|digit)*))
-void SuffixId(): { }
-{
-	( ( < DIGIT >)+ |
-	  ( (< LETTER > | IdPunct()) (< LETTER > | IdPunct() | < DIGIT >)*)
-	)
-}
-
-
-//value-id ::= `%` suffix-id
-void ValueId(): { }
-{
-	"%" SuffixId()
-}
-
-// symbol-ref-id ::= `@` (suffix-id | string-literal)
-void SymbolRefId(): { }
-{
-	"@" (SuffixId() | < STRING_LITERAL > )
-}
-
-// value-id-list ::= value-id (`,` value-id)*
-void ValueIdList(): { }
-{
-	ValueId() ("," ValueId())*
-}
-
-//value-use ::= value-id
-void ValueUse(): { }
-{
-	ValueId()
-}
-
-// value-use-list ::= value-use (`,` value-use)*
-void ValueUseList(): { }
-{
-	ValueUse() ("," ValueUse())*
-}
-
-
-// op-result            ::= value-id (`:` integer-literal)
-void OpResult(): { }
-{
-  ValueId() (":" IntegerLiteral())
-}
-
-
-// op-result-list       ::= op-result (`,` op-result)* `=`
-
-void OpResultList(): { }
-{
-	OpResult() ("," OpResult())* "="	
-}
-
-
-// caret-id        ::= `^` suffix-id
-void CaretId(): { }
-{
-	"^" SuffixId()
-}
-
-/*
-
-alias-name ::= bare-id
-
-type-alias ::= '!' alias-name
-
-
-dialect-namespace ::= bare-id
-
-opaque-dialect-item ::= dialect-namespace '<' string-literal '>'
-
-pretty-dialect-item-lead-ident ::= '[A-Za-z][A-Za-z0-9._]*'
-
-pretty-dialect-item-body ::= '<' pretty-dialect-item-contents+ '>'
-
-pretty-dialect-item-contents ::= pretty-dialect-item-body
-                              | '(' pretty-dialect-item-contents+ ')'
-                              | '[' pretty-dialect-item-contents+ ']'
-                              | '{' pretty-dialect-item-contents+ '}'
-                              | '[^[<({>\])}\0]+'
-
-pretty-dialect-item ::= dialect-namespace '.' pretty-dialect-item-lead-ident
-                                              pretty-dialect-item-body?
-
-
-
-
-
-dialect-type ::= '!' opaque-dialect-item
-dialect-type ::= '!' pretty-dialect-item
-
-
-builtin-type ::= https://mlir.llvm.org/docs/Dialects/Builtin/
-
-
-type ::= type-alias | dialect-type | builtin-type
-
-
-*/
-
-
-
-
-// value-id-and-type ::= value-id `:` type
-void ValueIdAndType(): { }
-{
-  ValueId() ":" //Type()
-}
-
-// Non-empty list of names and types.
-//value-id-and-type-list ::= value-id-and-type (`,` value-id-and-type)*
-
-// block-arg-list ::= `(` value-id-and-type-list? `)`
-
-
-
-// successor            ::= caret-id (`:` block-arg-list)?
-
-
-// successor-list       ::= `[` successor (`,` successor)* `]`
-
-
-/*
-block-id        ::= caret-id
-block-label     ::= block-id block-arg-list? `:`
-block           ::= block-label operation+
-
-region ::= `{` block* `}`
-
-region-list          ::= `(` region (`,` region)* `)`
-*/
-
-
-//dictionary-attribute ::= `{` (attribute-entry (`,` attribute-entry)*)? `}`
-
-// function-type ::= type
-
-// generic-operation    ::= string-literal `(` value-use-list? `)`  successor-list? region-list? dictionary-attribute? `:` function-type
-void GenericOperation(): { }
-{
-	< STRING_LITERAL > "(" (ValueUseList())? ")" 
-}
-
-
-// custom-operation-format ???
-
-// custom-operation     ::= bare-id custom-operation-format
-
-// custom-operation not currently supported
-
-
-// location ???
-
-// trailing-location    ::= (`loc` `(` location `)`)?
-
-// trailing-location not currently supported
-
-// Full: operation            ::= op-result-list? (generic-operation | custom-operation) trailing-location?
-// Current: operation            ::= op-result-list? generic-operation 
-void Operation(): { }
-{
-	(OpResultList())? GenericOperation() 
-}
-
-/*
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-type-list-no-parens ::=  type (`,` type)*
-type-list-parens ::= `(` `)`
-                   | `(` type-list-no-parens `)`
-
-// This is a common way to refer to a value with a specified type.
-ssa-use-and-type ::= ssa-use `:` type
-
-// Non-empty list of names and types.
-ssa-use-and-type-list ::= ssa-use-and-type (`,` ssa-use-and-type)*
-
-
-
-
-type-alias-def ::= '!' alias-name '=' 'type' type
-
-
-
-
-
-
-
-
-attribute-entry ::= (bare-id | string-literal) `=` attribute-value
-attribute-value ::= attribute-alias | dialect-attribute | builtin-attribute
-
-
-attribute-alias-def ::= '#' alias-name '=' attribute-value
-attribute-alias ::= '#' alias-name
-
-
-dialect-attribute-value ::= '#' opaque-dialect-item
-dialect-attribute-value ::= '#' pretty-dialect-item
-
-
-
-
-*/
-
-
-
-SimpleNode Root() :{}{
-	IntegerLiteral()
-  //Expression() ";"  {    return jjtThis;  }}
-
-void IntegerLiteral() : { }
-{	( < DECIMAL_LITERAL > | < HEXADECIMAL_LITERAL > )
-}/*void Expression() :{}{  AdditiveExpression()}void AdditiveExpression() :{}{  MultiplicativeExpression()  (    (      "+"    | "-"    )    MultiplicativeExpression()  )*}void MultiplicativeExpression() :{}{  UnaryExpression()  (    (      "*"    | "/"    | "%"    )    UnaryExpression()  )*}void UnaryExpression() :{}{  "(" Expression() ")"| Identifier()| Integer()}void Identifier() :{}{  < IDENTIFIER >}void Integer() :{}{  < INTEGER_LITERAL >}
-*/

@@ -1,0 +1,48 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+// ANTLR support
+apply plugin: 'antlr'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    //implementation "junit:junit:4.11"
+    antlr "org.antlr:antlr4:4.5.3"
+}
+
+generateGrammarSource {
+    outputDirectory = file('src-antlr')
+}
+
+// Project sources
+sourceSets {
+    main {
+        java {
+            srcDir 'src/main'
+            srcDir 'src-antlr'
+        }
+    }
+
+    test {
+        java {
+            srcDir 'test'
+        }
+
+        resources {
+            srcDir 'resources'
+        }
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
