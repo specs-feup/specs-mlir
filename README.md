@@ -1,2 +1,2 @@
 # specs-mlir
-Projects related with Multi-Level Intermediate Representation (MLIR)
+Projects related to LLVM's Multi-Level Intermediate Representation (MLIR)
