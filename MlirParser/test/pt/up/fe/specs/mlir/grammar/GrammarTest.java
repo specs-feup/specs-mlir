@@ -13,6 +13,7 @@
 
 package pt.up.fe.specs.mlir.grammar;
 
+import org.antlr.v4.parse.ANTLRParser;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 // import pt.up.fe.specs.util.SpecsSystem;
@@ -23,7 +24,7 @@ public class GrammarTest {
     @Test
     public void test() {
         // Convert code string into a character stream
-        var input = new ANTLRInputStream("hello a");
+        var input = new ANTLRInputStream("%t_tensor = \"toy.transpose\"(%tensor) {inplace = true} : (tensor<2x3xf64>) -> tensor<3x2xf64> loc(\"example/file/path\":12:1)");
         // Transform characters into tokens using the lexer
         var lex = new MlirLexer(input); // Will we interact with this?
 
@@ -34,9 +35,10 @@ public class GrammarTest {
 
         var rootNode = parser.root();
 
-        System.out.println(rootNode.toStringTree());
+        System.out.println(rootNode.toStringTree(parser));
         // parse(lex, parser, "r");
     }
+
     /*
     public static void parse(Lexer lex, Parser parser, String ruleName) {
         lex.removeErrorListeners();

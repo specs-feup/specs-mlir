@@ -11,5 +11,5 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry kind="con" path="org.apache.ivyde.eclipse.cpcontainer.IVYDE_CONTAINER/?project=MlirParser&amp;ivyXmlPath=ivy.xml&amp;confs=*"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/SpecsUtils"/>
-	<classpathentry kind="output" path="bin"/>
+	<classpathentry kind="output" path="bin/default"/>
 </classpath>
