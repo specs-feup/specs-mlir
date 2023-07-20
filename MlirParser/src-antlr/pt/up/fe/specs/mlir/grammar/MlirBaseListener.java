@@ -222,13 +222,13 @@ public class MlirBaseListener implements MlirListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterOperationReturnTypeList(MlirParser.OperationReturnTypeListContext ctx) { }
+	@Override public void enterOperationReturnType(MlirParser.OperationReturnTypeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitOperationReturnTypeList(MlirParser.OperationReturnTypeListContext ctx) { }
+	@Override public void exitOperationReturnType(MlirParser.OperationReturnTypeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

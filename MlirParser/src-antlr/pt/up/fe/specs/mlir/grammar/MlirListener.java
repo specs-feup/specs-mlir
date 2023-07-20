@@ -210,17 +210,17 @@ public interface MlirListener extends ParseTreeListener {
 	 */
 	void exitOperationAttributes(MlirParser.OperationAttributesContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code OperationReturnTypeList}
-	 * labeled alternative in {@link MlirParser#operation_return_type_list}.
+	 * Enter a parse tree produced by the {@code OperationReturnType}
+	 * labeled alternative in {@link MlirParser#operation_return_type}.
 	 * @param ctx the parse tree
 	 */
-	void enterOperationReturnTypeList(MlirParser.OperationReturnTypeListContext ctx);
+	void enterOperationReturnType(MlirParser.OperationReturnTypeContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code OperationReturnTypeList}
-	 * labeled alternative in {@link MlirParser#operation_return_type_list}.
+	 * Exit a parse tree produced by the {@code OperationReturnType}
+	 * labeled alternative in {@link MlirParser#operation_return_type}.
 	 * @param ctx the parse tree
 	 */
-	void exitOperationReturnTypeList(MlirParser.OperationReturnTypeListContext ctx);
+	void exitOperationReturnType(MlirParser.OperationReturnTypeContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link MlirParser#operation}.
 	 * @param ctx the parse tree
