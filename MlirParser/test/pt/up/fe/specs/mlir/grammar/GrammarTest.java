@@ -24,7 +24,7 @@ public class GrammarTest {
     @Test
     public void test() {
         // Convert code string into a character stream
-        var input = new ANTLRInputStream("%t_tensor = \"toy.transpose\"(%tensor) {inplace = true} : (tensor<2x3xf64>) -> tensor<3x2xf64> loc(\"example/file/path\":12:1)");
+        var input = new ANTLRInputStream("%a = \"b\"(%c, %d){e = f, g = h} : (tensor<2x3xf64>) -> (tensor<2x3xf64>) loc(\"i/j/k\")");
         // Transform characters into tokens using the lexer
         var lex = new MlirLexer(input); // Will we interact with this?
 

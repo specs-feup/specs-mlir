@@ -9,13 +9,13 @@ grammar Mlir;
 
 DIGIT: [0-9] ;
 RANKED_DIMENSION : [0-9]'x' ;
-ID : [a-zA-Z_$][a-zA-Z_0-9]* ;
+ID : [a-zA-Z_$][a-zA-Z_0-9/]* ;
 TRUE : 'true' ;
 
 WS : [ \t\r\n]+ -> skip ;
 
 // %t_tensor = "toy.transpose"(%tensor) {inplace = true} : (tensor<2x3xf64>) -> tensor<3x2xf64> loc("example/file/path":12:1)
-root : operation ;         // match keyword hello followed by an identifier
+root : op_result op_name operand_list attributes ':' operand_type_list '->' op_return_type_list loc;         // match keyword hello followed by an identifier
 
 
 //=----------------------------------------=//
@@ -45,7 +45,7 @@ type : tensor_type #TypeDeclaration ; /* TODO: Add more types */
 
 // Operands
 operand : id_ssa #InputOperand ;
-operand_list : operand (',' operand)* #OperandList ;
+operand_list : '(' operand (',' operand)* ')' #OperandList ;
 operand_type_list : '(' type (',' type)* ')' #OperandTypeList ;
 
 //=----------------------------------------=//
@@ -78,5 +78,5 @@ op_return_type_list : '(' type (',' type)* ')' #OperationReturnTypeList ;
 
 // Final operation declaration
 operation
-    : (op_result '=') ? op_name operand_list op_attributes ':' operand_type_list '->' op_return_type_list loc
+    : op_result? op_name operand_list attributes ':' operand_type_list '->' op_return_type_list loc
     ;
