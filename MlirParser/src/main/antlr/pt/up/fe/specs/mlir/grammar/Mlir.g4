@@ -10,6 +10,7 @@ grammar Mlir;
 DIGIT: [0-9] ;
 RANKED_DIMENSION : [0-9]'x' ;
 ID : [a-zA-Z_$][a-zA-Z_0-9/]* ;
+PATH : '"' [A-Za-z0-9_/]+ '"' ':'[0-9]+':'[0-9]+;
 TRUE : 'true' ;
 
 WS : [ \t\r\n]+ -> skip ;
@@ -49,7 +50,7 @@ attributes : '{' attr_entry (',' attr_entry)* '}' #AttributeDictionary ;
 
 
 /* source code location */
-loc : 'loc' '(' '"' ID+ '"' ')' #Location ;
+loc : 'loc' '(' PATH ')' #Location ;
 
 
 /* operations */
