@@ -43,10 +43,10 @@ operand_type_list : '(' type (',' type)* ')' #OperandTypeList ;
 
 
 /* attributes */
-attr_property : ID #AttributePropety ;
-attr_value : (ID | DIGIT) #AttributeValue ;
-attr_entry : attr_property '=' attr_value #AttributeEntry ;
-attributes : '{' attr_entry (',' attr_entry)* '}' #AttributeDictionary ;
+attributes_property : ID #AttributePropety ;
+attributes_value : (ID | DIGIT) #AttributeValue ;
+attributes_entry : attributes_property '=' attributes_value #AttributeEntry ;
+attributes : '{' attributes_entry (',' attributes_entry)* '}' #AttributeDictionary ;
 
 
 /* source code location */
@@ -54,11 +54,11 @@ loc : 'loc' '(' PATH ')' #Location ;
 
 
 /* operations */
-op_result : id_ssa '='  #OperationResult ;
-op_name : '"' ID+ '"' #OperationName ;
-op_attributes : attributes #OperationAttributes ;
-op_return_type_list : '(' type (',' type)* ')' #OperationReturnTypeList ;
+operation_result : id_ssa '='  #OperationResult ;
+operation_name : '"' ID+ '"' #OperationName ;
+operation_attributes : attributes #OperationAttributes ;
+operation_return_type_list : '(' type (',' type)* ')' #OperationReturnTypeList ;
 
 operation
-    : op_result? op_name operand_list attributes ':' operand_type_list '->' op_return_type_list loc
+    : operation_result? operation_name operand_list attributes ':' operand_type_list '->' operation_return_type_list loc
     ;

@@ -25,15 +25,16 @@ public class MlirParser extends Parser {
 	public static final int
 		RULE_root = 0, RULE_id_ssa = 1, RULE_dimension_list_ranked = 2, RULE_keyword_type_float = 3, 
 		RULE_tensor_type = 4, RULE_type = 5, RULE_operand = 6, RULE_operand_list = 7, 
-		RULE_operand_type_list = 8, RULE_attr_property = 9, RULE_attr_value = 10, 
-		RULE_attr_entry = 11, RULE_attributes = 12, RULE_loc = 13, RULE_op_result = 14, 
-		RULE_op_name = 15, RULE_op_attributes = 16, RULE_op_return_type_list = 17, 
+		RULE_operand_type_list = 8, RULE_attributes_property = 9, RULE_attributes_value = 10, 
+		RULE_attributes_entry = 11, RULE_attributes = 12, RULE_loc = 13, RULE_operation_result = 14, 
+		RULE_operation_name = 15, RULE_operation_attributes = 16, RULE_operation_return_type_list = 17, 
 		RULE_operation = 18;
 	public static final String[] ruleNames = {
 		"root", "id_ssa", "dimension_list_ranked", "keyword_type_float", "tensor_type", 
-		"type", "operand", "operand_list", "operand_type_list", "attr_property", 
-		"attr_value", "attr_entry", "attributes", "loc", "op_result", "op_name", 
-		"op_attributes", "op_return_type_list", "operation"
+		"type", "operand", "operand_list", "operand_type_list", "attributes_property", 
+		"attributes_value", "attributes_entry", "attributes", "loc", "operation_result", 
+		"operation_name", "operation_attributes", "operation_return_type_list", 
+		"operation"
 	};
 
 	private static final String[] _LITERAL_NAMES = {
@@ -585,20 +586,20 @@ public class MlirParser extends Parser {
 		return _localctx;
 	}
 
-	public static class Attr_propertyContext extends ParserRuleContext {
-		public Attr_propertyContext(ParserRuleContext parent, int invokingState) {
+	public static class Attributes_propertyContext extends ParserRuleContext {
+		public Attributes_propertyContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_attr_property; }
+		@Override public int getRuleIndex() { return RULE_attributes_property; }
 	 
-		public Attr_propertyContext() { }
-		public void copyFrom(Attr_propertyContext ctx) {
+		public Attributes_propertyContext() { }
+		public void copyFrom(Attributes_propertyContext ctx) {
 			super.copyFrom(ctx);
 		}
 	}
-	public static class AttributePropetyContext extends Attr_propertyContext {
+	public static class AttributePropetyContext extends Attributes_propertyContext {
 		public TerminalNode ID() { return getToken(MlirParser.ID, 0); }
-		public AttributePropetyContext(Attr_propertyContext ctx) { copyFrom(ctx); }
+		public AttributePropetyContext(Attributes_propertyContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
 			if ( listener instanceof MlirListener ) ((MlirListener)listener).enterAttributePropety(this);
@@ -609,9 +610,9 @@ public class MlirParser extends Parser {
 		}
 	}
 
-	public final Attr_propertyContext attr_property() throws RecognitionException {
-		Attr_propertyContext _localctx = new Attr_propertyContext(_ctx, getState());
-		enterRule(_localctx, 18, RULE_attr_property);
+	public final Attributes_propertyContext attributes_property() throws RecognitionException {
+		Attributes_propertyContext _localctx = new Attributes_propertyContext(_ctx, getState());
+		enterRule(_localctx, 18, RULE_attributes_property);
 		try {
 			_localctx = new AttributePropetyContext(_localctx);
 			enterOuterAlt(_localctx, 1);
@@ -631,21 +632,21 @@ public class MlirParser extends Parser {
 		return _localctx;
 	}
 
-	public static class Attr_valueContext extends ParserRuleContext {
-		public Attr_valueContext(ParserRuleContext parent, int invokingState) {
+	public static class Attributes_valueContext extends ParserRuleContext {
+		public Attributes_valueContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_attr_value; }
+		@Override public int getRuleIndex() { return RULE_attributes_value; }
 	 
-		public Attr_valueContext() { }
-		public void copyFrom(Attr_valueContext ctx) {
+		public Attributes_valueContext() { }
+		public void copyFrom(Attributes_valueContext ctx) {
 			super.copyFrom(ctx);
 		}
 	}
-	public static class AttributeValueContext extends Attr_valueContext {
+	public static class AttributeValueContext extends Attributes_valueContext {
 		public TerminalNode ID() { return getToken(MlirParser.ID, 0); }
 		public TerminalNode DIGIT() { return getToken(MlirParser.DIGIT, 0); }
-		public AttributeValueContext(Attr_valueContext ctx) { copyFrom(ctx); }
+		public AttributeValueContext(Attributes_valueContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
 			if ( listener instanceof MlirListener ) ((MlirListener)listener).enterAttributeValue(this);
@@ -656,9 +657,9 @@ public class MlirParser extends Parser {
 		}
 	}
 
-	public final Attr_valueContext attr_value() throws RecognitionException {
-		Attr_valueContext _localctx = new Attr_valueContext(_ctx, getState());
-		enterRule(_localctx, 20, RULE_attr_value);
+	public final Attributes_valueContext attributes_value() throws RecognitionException {
+		Attributes_valueContext _localctx = new Attributes_valueContext(_ctx, getState());
+		enterRule(_localctx, 20, RULE_attributes_value);
 		int _la;
 		try {
 			_localctx = new AttributeValueContext(_localctx);
@@ -684,25 +685,25 @@ public class MlirParser extends Parser {
 		return _localctx;
 	}
 
-	public static class Attr_entryContext extends ParserRuleContext {
-		public Attr_entryContext(ParserRuleContext parent, int invokingState) {
+	public static class Attributes_entryContext extends ParserRuleContext {
+		public Attributes_entryContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_attr_entry; }
+		@Override public int getRuleIndex() { return RULE_attributes_entry; }
 	 
-		public Attr_entryContext() { }
-		public void copyFrom(Attr_entryContext ctx) {
+		public Attributes_entryContext() { }
+		public void copyFrom(Attributes_entryContext ctx) {
 			super.copyFrom(ctx);
 		}
 	}
-	public static class AttributeEntryContext extends Attr_entryContext {
-		public Attr_propertyContext attr_property() {
-			return getRuleContext(Attr_propertyContext.class,0);
+	public static class AttributeEntryContext extends Attributes_entryContext {
+		public Attributes_propertyContext attributes_property() {
+			return getRuleContext(Attributes_propertyContext.class,0);
 		}
-		public Attr_valueContext attr_value() {
-			return getRuleContext(Attr_valueContext.class,0);
+		public Attributes_valueContext attributes_value() {
+			return getRuleContext(Attributes_valueContext.class,0);
 		}
-		public AttributeEntryContext(Attr_entryContext ctx) { copyFrom(ctx); }
+		public AttributeEntryContext(Attributes_entryContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
 			if ( listener instanceof MlirListener ) ((MlirListener)listener).enterAttributeEntry(this);
@@ -713,19 +714,19 @@ public class MlirParser extends Parser {
 		}
 	}
 
-	public final Attr_entryContext attr_entry() throws RecognitionException {
-		Attr_entryContext _localctx = new Attr_entryContext(_ctx, getState());
-		enterRule(_localctx, 22, RULE_attr_entry);
+	public final Attributes_entryContext attributes_entry() throws RecognitionException {
+		Attributes_entryContext _localctx = new Attributes_entryContext(_ctx, getState());
+		enterRule(_localctx, 22, RULE_attributes_entry);
 		try {
 			_localctx = new AttributeEntryContext(_localctx);
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(87);
-			attr_property();
+			attributes_property();
 			setState(88);
 			match(T__10);
 			setState(89);
-			attr_value();
+			attributes_value();
 			}
 		}
 		catch (RecognitionException re) {
@@ -751,11 +752,11 @@ public class MlirParser extends Parser {
 		}
 	}
 	public static class AttributeDictionaryContext extends AttributesContext {
-		public List<Attr_entryContext> attr_entry() {
-			return getRuleContexts(Attr_entryContext.class);
+		public List<Attributes_entryContext> attributes_entry() {
+			return getRuleContexts(Attributes_entryContext.class);
 		}
-		public Attr_entryContext attr_entry(int i) {
-			return getRuleContext(Attr_entryContext.class,i);
+		public Attributes_entryContext attributes_entry(int i) {
+			return getRuleContext(Attributes_entryContext.class,i);
 		}
 		public AttributeDictionaryContext(AttributesContext ctx) { copyFrom(ctx); }
 		@Override
@@ -779,7 +780,7 @@ public class MlirParser extends Parser {
 			setState(91);
 			match(T__11);
 			setState(92);
-			attr_entry();
+			attributes_entry();
 			setState(97);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
@@ -789,7 +790,7 @@ public class MlirParser extends Parser {
 				setState(93);
 				match(T__8);
 				setState(94);
-				attr_entry();
+				attributes_entry();
 				}
 				}
 				setState(99);
@@ -863,22 +864,22 @@ public class MlirParser extends Parser {
 		return _localctx;
 	}
 
-	public static class Op_resultContext extends ParserRuleContext {
-		public Op_resultContext(ParserRuleContext parent, int invokingState) {
+	public static class Operation_resultContext extends ParserRuleContext {
+		public Operation_resultContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_op_result; }
+		@Override public int getRuleIndex() { return RULE_operation_result; }
 	 
-		public Op_resultContext() { }
-		public void copyFrom(Op_resultContext ctx) {
+		public Operation_resultContext() { }
+		public void copyFrom(Operation_resultContext ctx) {
 			super.copyFrom(ctx);
 		}
 	}
-	public static class OperationResultContext extends Op_resultContext {
+	public static class OperationResultContext extends Operation_resultContext {
 		public Id_ssaContext id_ssa() {
 			return getRuleContext(Id_ssaContext.class,0);
 		}
-		public OperationResultContext(Op_resultContext ctx) { copyFrom(ctx); }
+		public OperationResultContext(Operation_resultContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
 			if ( listener instanceof MlirListener ) ((MlirListener)listener).enterOperationResult(this);
@@ -889,9 +890,9 @@ public class MlirParser extends Parser {
 		}
 	}
 
-	public final Op_resultContext op_result() throws RecognitionException {
-		Op_resultContext _localctx = new Op_resultContext(_ctx, getState());
-		enterRule(_localctx, 28, RULE_op_result);
+	public final Operation_resultContext operation_result() throws RecognitionException {
+		Operation_resultContext _localctx = new Operation_resultContext(_ctx, getState());
+		enterRule(_localctx, 28, RULE_operation_result);
 		try {
 			_localctx = new OperationResultContext(_localctx);
 			enterOuterAlt(_localctx, 1);
@@ -913,23 +914,23 @@ public class MlirParser extends Parser {
 		return _localctx;
 	}
 
-	public static class Op_nameContext extends ParserRuleContext {
-		public Op_nameContext(ParserRuleContext parent, int invokingState) {
+	public static class Operation_nameContext extends ParserRuleContext {
+		public Operation_nameContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_op_name; }
+		@Override public int getRuleIndex() { return RULE_operation_name; }
 	 
-		public Op_nameContext() { }
-		public void copyFrom(Op_nameContext ctx) {
+		public Operation_nameContext() { }
+		public void copyFrom(Operation_nameContext ctx) {
 			super.copyFrom(ctx);
 		}
 	}
-	public static class OperationNameContext extends Op_nameContext {
+	public static class OperationNameContext extends Operation_nameContext {
 		public List<TerminalNode> ID() { return getTokens(MlirParser.ID); }
 		public TerminalNode ID(int i) {
 			return getToken(MlirParser.ID, i);
 		}
-		public OperationNameContext(Op_nameContext ctx) { copyFrom(ctx); }
+		public OperationNameContext(Operation_nameContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
 			if ( listener instanceof MlirListener ) ((MlirListener)listener).enterOperationName(this);
@@ -940,9 +941,9 @@ public class MlirParser extends Parser {
 		}
 	}
 
-	public final Op_nameContext op_name() throws RecognitionException {
-		Op_nameContext _localctx = new Op_nameContext(_ctx, getState());
-		enterRule(_localctx, 30, RULE_op_name);
+	public final Operation_nameContext operation_name() throws RecognitionException {
+		Operation_nameContext _localctx = new Operation_nameContext(_ctx, getState());
+		enterRule(_localctx, 30, RULE_operation_name);
 		int _la;
 		try {
 			_localctx = new OperationNameContext(_localctx);
@@ -979,22 +980,22 @@ public class MlirParser extends Parser {
 		return _localctx;
 	}
 
-	public static class Op_attributesContext extends ParserRuleContext {
-		public Op_attributesContext(ParserRuleContext parent, int invokingState) {
+	public static class Operation_attributesContext extends ParserRuleContext {
+		public Operation_attributesContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_op_attributes; }
+		@Override public int getRuleIndex() { return RULE_operation_attributes; }
 	 
-		public Op_attributesContext() { }
-		public void copyFrom(Op_attributesContext ctx) {
+		public Operation_attributesContext() { }
+		public void copyFrom(Operation_attributesContext ctx) {
 			super.copyFrom(ctx);
 		}
 	}
-	public static class OperationAttributesContext extends Op_attributesContext {
+	public static class OperationAttributesContext extends Operation_attributesContext {
 		public AttributesContext attributes() {
 			return getRuleContext(AttributesContext.class,0);
 		}
-		public OperationAttributesContext(Op_attributesContext ctx) { copyFrom(ctx); }
+		public OperationAttributesContext(Operation_attributesContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
 			if ( listener instanceof MlirListener ) ((MlirListener)listener).enterOperationAttributes(this);
@@ -1005,9 +1006,9 @@ public class MlirParser extends Parser {
 		}
 	}
 
-	public final Op_attributesContext op_attributes() throws RecognitionException {
-		Op_attributesContext _localctx = new Op_attributesContext(_ctx, getState());
-		enterRule(_localctx, 32, RULE_op_attributes);
+	public final Operation_attributesContext operation_attributes() throws RecognitionException {
+		Operation_attributesContext _localctx = new Operation_attributesContext(_ctx, getState());
+		enterRule(_localctx, 32, RULE_operation_attributes);
 		try {
 			_localctx = new OperationAttributesContext(_localctx);
 			enterOuterAlt(_localctx, 1);
@@ -1027,25 +1028,25 @@ public class MlirParser extends Parser {
 		return _localctx;
 	}
 
-	public static class Op_return_type_listContext extends ParserRuleContext {
-		public Op_return_type_listContext(ParserRuleContext parent, int invokingState) {
+	public static class Operation_return_type_listContext extends ParserRuleContext {
+		public Operation_return_type_listContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_op_return_type_list; }
+		@Override public int getRuleIndex() { return RULE_operation_return_type_list; }
 	 
-		public Op_return_type_listContext() { }
-		public void copyFrom(Op_return_type_listContext ctx) {
+		public Operation_return_type_listContext() { }
+		public void copyFrom(Operation_return_type_listContext ctx) {
 			super.copyFrom(ctx);
 		}
 	}
-	public static class OperationReturnTypeListContext extends Op_return_type_listContext {
+	public static class OperationReturnTypeListContext extends Operation_return_type_listContext {
 		public List<TypeContext> type() {
 			return getRuleContexts(TypeContext.class);
 		}
 		public TypeContext type(int i) {
 			return getRuleContext(TypeContext.class,i);
 		}
-		public OperationReturnTypeListContext(Op_return_type_listContext ctx) { copyFrom(ctx); }
+		public OperationReturnTypeListContext(Operation_return_type_listContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
 			if ( listener instanceof MlirListener ) ((MlirListener)listener).enterOperationReturnTypeList(this);
@@ -1056,9 +1057,9 @@ public class MlirParser extends Parser {
 		}
 	}
 
-	public final Op_return_type_listContext op_return_type_list() throws RecognitionException {
-		Op_return_type_listContext _localctx = new Op_return_type_listContext(_ctx, getState());
-		enterRule(_localctx, 34, RULE_op_return_type_list);
+	public final Operation_return_type_listContext operation_return_type_list() throws RecognitionException {
+		Operation_return_type_listContext _localctx = new Operation_return_type_listContext(_ctx, getState());
+		enterRule(_localctx, 34, RULE_operation_return_type_list);
 		int _la;
 		try {
 			_localctx = new OperationReturnTypeListContext(_localctx);
@@ -1100,8 +1101,8 @@ public class MlirParser extends Parser {
 	}
 
 	public static class OperationContext extends ParserRuleContext {
-		public Op_nameContext op_name() {
-			return getRuleContext(Op_nameContext.class,0);
+		public Operation_nameContext operation_name() {
+			return getRuleContext(Operation_nameContext.class,0);
 		}
 		public Operand_listContext operand_list() {
 			return getRuleContext(Operand_listContext.class,0);
@@ -1112,14 +1113,14 @@ public class MlirParser extends Parser {
 		public Operand_type_listContext operand_type_list() {
 			return getRuleContext(Operand_type_listContext.class,0);
 		}
-		public Op_return_type_listContext op_return_type_list() {
-			return getRuleContext(Op_return_type_listContext.class,0);
+		public Operation_return_type_listContext operation_return_type_list() {
+			return getRuleContext(Operation_return_type_listContext.class,0);
 		}
 		public LocContext loc() {
 			return getRuleContext(LocContext.class,0);
 		}
-		public Op_resultContext op_result() {
-			return getRuleContext(Op_resultContext.class,0);
+		public Operation_resultContext operation_result() {
+			return getRuleContext(Operation_resultContext.class,0);
 		}
 		public OperationContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -1147,12 +1148,12 @@ public class MlirParser extends Parser {
 			if (_la==T__0) {
 				{
 				setState(131);
-				op_result();
+				operation_result();
 				}
 			}
 
 			setState(134);
-			op_name();
+			operation_name();
 			setState(135);
 			operand_list();
 			setState(136);
@@ -1164,7 +1165,7 @@ public class MlirParser extends Parser {
 			setState(139);
 			match(T__16);
 			setState(140);
-			op_return_type_list();
+			operation_return_type_list();
 			setState(141);
 			loc();
 			}

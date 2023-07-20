@@ -13,11 +13,14 @@
 
 package pt.up.fe.specs.mlir.grammar;
 
+import org.antlr.v4.gui.TreeViewer;
 import org.antlr.v4.parse.ANTLRParser;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 // import pt.up.fe.specs.util.SpecsSystem;
 import org.junit.jupiter.api.Test;
+
+import java.util.Arrays;
 
 public class GrammarTest {
 
@@ -34,6 +37,12 @@ public class GrammarTest {
         var parser = new MlirParser(tokens);
 
         var rootNode = parser.root();
+
+        TreeViewer viewer = new TreeViewer(
+                Arrays.asList(parser.getRuleNames()),
+                rootNode
+        );
+        viewer.open();
 
         System.out.println(rootNode.toStringTree(parser));
         // parse(lex, parser, "r");
