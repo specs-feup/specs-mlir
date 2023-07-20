@@ -9,7 +9,7 @@ grammar Mlir;
 
 DIGIT: [0-9] ;
 RANKED_DIMENSION : [0-9]'x' ;
-ID : [a-zA-Z_$][a-zA-Z_0-9/]* ;
+ID : [A-Za-z_][A-Za-z0-9_]* ;
 PATH : '"' [A-Za-z0-9_/]+ '"' ':'[0-9]+':'[0-9]+;
 TRUE : 'true' ;
 
