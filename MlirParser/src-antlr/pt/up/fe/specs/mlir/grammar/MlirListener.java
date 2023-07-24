@@ -179,4 +179,204 @@ public interface MlirListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitDimension_list(MlirParser.Dimension_listContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MlirParser#ssa_id}.
+	 * @param ctx the parse tree
+	 */
+	void enterSsa_id(MlirParser.Ssa_idContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MlirParser#ssa_id}.
+	 * @param ctx the parse tree
+	 */
+	void exitSsa_id(MlirParser.Ssa_idContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MlirParser#symbol_ref_id}.
+	 * @param ctx the parse tree
+	 */
+	void enterSymbol_ref_id(MlirParser.Symbol_ref_idContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MlirParser#symbol_ref_id}.
+	 * @param ctx the parse tree
+	 */
+	void exitSymbol_ref_id(MlirParser.Symbol_ref_idContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MlirParser#block_id}.
+	 * @param ctx the parse tree
+	 */
+	void enterBlock_id(MlirParser.Block_idContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MlirParser#block_id}.
+	 * @param ctx the parse tree
+	 */
+	void exitBlock_id(MlirParser.Block_idContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MlirParser#type_alias}.
+	 * @param ctx the parse tree
+	 */
+	void enterType_alias(MlirParser.Type_aliasContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MlirParser#type_alias}.
+	 * @param ctx the parse tree
+	 */
+	void exitType_alias(MlirParser.Type_aliasContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MlirParser#map_or_set_id}.
+	 * @param ctx the parse tree
+	 */
+	void enterMap_or_set_id(MlirParser.Map_or_set_idContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MlirParser#map_or_set_id}.
+	 * @param ctx the parse tree
+	 */
+	void exitMap_or_set_id(MlirParser.Map_or_set_idContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MlirParser#attribute_alias}.
+	 * @param ctx the parse tree
+	 */
+	void enterAttribute_alias(MlirParser.Attribute_aliasContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MlirParser#attribute_alias}.
+	 * @param ctx the parse tree
+	 */
+	void exitAttribute_alias(MlirParser.Attribute_aliasContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MlirParser#ssa_id_list}.
+	 * @param ctx the parse tree
+	 */
+	void enterSsa_id_list(MlirParser.Ssa_id_listContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MlirParser#ssa_id_list}.
+	 * @param ctx the parse tree
+	 */
+	void exitSsa_id_list(MlirParser.Ssa_id_listContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MlirParser#none_type}.
+	 * @param ctx the parse tree
+	 */
+	void enterNone_type(MlirParser.None_typeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MlirParser#none_type}.
+	 * @param ctx the parse tree
+	 */
+	void exitNone_type(MlirParser.None_typeContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MlirParser#float_type}.
+	 * @param ctx the parse tree
+	 */
+	void enterFloat_type(MlirParser.Float_typeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MlirParser#float_type}.
+	 * @param ctx the parse tree
+	 */
+	void exitFloat_type(MlirParser.Float_typeContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MlirParser#index_type}.
+	 * @param ctx the parse tree
+	 */
+	void enterIndex_type(MlirParser.Index_typeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MlirParser#index_type}.
+	 * @param ctx the parse tree
+	 */
+	void exitIndex_type(MlirParser.Index_typeContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MlirParser#inttype_width}.
+	 * @param ctx the parse tree
+	 */
+	void enterInttype_width(MlirParser.Inttype_widthContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MlirParser#inttype_width}.
+	 * @param ctx the parse tree
+	 */
+	void exitInttype_width(MlirParser.Inttype_widthContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MlirParser#signed_integer_type}.
+	 * @param ctx the parse tree
+	 */
+	void enterSigned_integer_type(MlirParser.Signed_integer_typeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MlirParser#signed_integer_type}.
+	 * @param ctx the parse tree
+	 */
+	void exitSigned_integer_type(MlirParser.Signed_integer_typeContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MlirParser#unsigned_integer_type}.
+	 * @param ctx the parse tree
+	 */
+	void enterUnsigned_integer_type(MlirParser.Unsigned_integer_typeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MlirParser#unsigned_integer_type}.
+	 * @param ctx the parse tree
+	 */
+	void exitUnsigned_integer_type(MlirParser.Unsigned_integer_typeContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MlirParser#signless_integer_type}.
+	 * @param ctx the parse tree
+	 */
+	void enterSignless_integer_type(MlirParser.Signless_integer_typeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MlirParser#signless_integer_type}.
+	 * @param ctx the parse tree
+	 */
+	void exitSignless_integer_type(MlirParser.Signless_integer_typeContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MlirParser#integer_type}.
+	 * @param ctx the parse tree
+	 */
+	void enterInteger_type(MlirParser.Integer_typeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MlirParser#integer_type}.
+	 * @param ctx the parse tree
+	 */
+	void exitInteger_type(MlirParser.Integer_typeContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MlirParser#simple_type}.
+	 * @param ctx the parse tree
+	 */
+	void enterSimple_type(MlirParser.Simple_typeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MlirParser#simple_type}.
+	 * @param ctx the parse tree
+	 */
+	void exitSimple_type(MlirParser.Simple_typeContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MlirParser#stride_list}.
+	 * @param ctx the parse tree
+	 */
+	void enterStride_list(MlirParser.Stride_listContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MlirParser#stride_list}.
+	 * @param ctx the parse tree
+	 */
+	void exitStride_list(MlirParser.Stride_listContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MlirParser#strided_layout}.
+	 * @param ctx the parse tree
+	 */
+	void enterStrided_layout(MlirParser.Strided_layoutContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MlirParser#strided_layout}.
+	 * @param ctx the parse tree
+	 */
+	void exitStrided_layout(MlirParser.Strided_layoutContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MlirParser#ranked_memref_type}.
+	 * @param ctx the parse tree
+	 */
+	void enterRanked_memref_type(MlirParser.Ranked_memref_typeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MlirParser#ranked_memref_type}.
+	 * @param ctx the parse tree
+	 */
+	void exitRanked_memref_type(MlirParser.Ranked_memref_typeContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MlirParser#memref_type}.
+	 * @param ctx the parse tree
+	 */
+	void enterMemref_type(MlirParser.Memref_typeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MlirParser#memref_type}.
+	 * @param ctx the parse tree
+	 */
+	void exitMemref_type(MlirParser.Memref_typeContext ctx);
 }

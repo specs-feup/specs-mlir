@@ -13,6 +13,7 @@
 
 package pt.up.fe.specs.mlir.grammar;
 
+import org.antlr.runtime.tree.Tree;
 import org.antlr.v4.gui.TreeViewer;
 import org.antlr.v4.parse.ANTLRParser;
 import org.antlr.v4.runtime.ANTLRInputStream;
@@ -20,19 +21,23 @@ import org.antlr.v4.runtime.CommonTokenStream;
 // import pt.up.fe.specs.util.SpecsSystem;
 import org.junit.jupiter.api.Test;
 
+import javax.swing.*;
 import java.util.Arrays;
+import java.util.concurrent.ExecutionException;
 
 public class GrammarTest {
 
     @Test
     public void test() {
+        String code = "memref<?xbf16>";
         // Convert code string into a character stream
-        var input = new ANTLRInputStream("2x3x2x3x3x");
+        var input = new ANTLRInputStream(code);
         // Transform characters into tokens using the lexer
         var lex = new MlirLexer(input); // Will we interact with this?
 
         // Wrap lexer around a token stream
         var tokens = new CommonTokenStream(lex);
+
         // Transforms tokens into a parse tree
         var parser = new MlirParser(tokens);
 
@@ -42,9 +47,18 @@ public class GrammarTest {
                 Arrays.asList(parser.getRuleNames()),
                 rootNode
         );
-        viewer.open();
+        var window = viewer.open();
+        try {
+            var w = window.get();
+            w.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        } catch (ExecutionException e) {
+            throw new RuntimeException(e);
+        }
 
         System.out.println(rootNode.toStringTree(parser));
+
         // parse(lex, parser, "r");
     }
 
