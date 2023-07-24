@@ -20,7 +20,7 @@ UNDERSCORE : [_] ;
 ID_PUNCT : [$._-] ;
 ID_CHARS : [$.] ;
 
-/* types */
+/* types & keywords */
 NONE : 'none' ;
 FLOAT : 'f16' | 'bf16' | 'f32' |'f64' ;
 INTTYPE_WIDTH : [1-9][0-9]* ;
@@ -78,96 +78,118 @@ LARROW : '<-' ;
 
 WS : [ \t\r\n]+ -> skip ;
 
-
 /* literals */
-bool_literal : TRUE | FALSE;
-decimal_literal : DIGIT+;
-hexadecimal_literal : HEX HEX_DIGIT+ ;
-integer_literal : decimal_literal | hexadecimal_literal ;
-negated_integer_literal : DASH_SYMBOL integer_literal ;
-posneg_integer_literal : integer_literal | negated_integer_literal ;
-float_literal : FLOAT_PRECISION ;
-string_literal : QUOTATION_MARKS_SYMBOL ID QUOTATION_MARKS_SYMBOL #StringLiteral ;
-constant_literal : bool_literal | integer_literal | float_literal | string_literal ;
+bool_literal            : 'true' | 'false' #BoolLiteral ;
+decimal_literal         : DIGIT+ #DecimalLiteral ;
+hexadecimal_literal     : '0x' HEX_DIGIT+ #HexadecimalLiteral ;
+integer_literal         : decimal_literal | hexadecimal_literal ;
+negated_integer_literal : '-' integer_literal #NegatedIntegerLiteral ;
+posneg_integer_literal  : integer_literal | negated_integer_literal ;
+float_literal           : FLOAT_PRECISION #FloatLiteral ;
+string_literal          : '""' ID '"' #StringLiteral ;
+constant_literal        : bool_literal | integer_literal | float_literal | string_literal ;
 
 /* identifier syntax */
-bare_id : (LETTER | UNDERSCORE) (LETTER | DIGIT | UNDERSCORE | ID_CHARS)* ;
+bare_id   : (LETTER | UNDERSCORE) (LETTER | DIGIT | UNDERSCORE | ID_CHARS)* #BareID ;
 suffix_id : DIGIT+ | bare_id ;
 
 /* dimensions */
-dimension : '?' | DIGIT+ ;
-static_dimension_list : (DIGIT+ DIMENSION_SEP_SYMBOL) #StaticDimensionList ;
-dimension_list_ranked : (dimension DIMENSION_SEP_SYMBOL)* #RankedDimensionList ;
-dimension_list_unranked : ASTERISK_SYMBOL DIMENSION_SEP_SYMBOL #UnrankedDimensionList ;
-dimension_list : dimension_list_ranked | dimension_list_unranked ;
-
+dimension               : '?' | DIGIT+ ;
+static_dimension_list   : (DIGIT+ 'x') #StaticDimensionList ;
+dimension_list_ranked   : (dimension 'x')* #RankedDimensionList ;
+dimension_list_unranked : '*' 'x' #UnrankedDimensionList ;
+dimension_list          : dimension_list_ranked | dimension_list_unranked ;
 
 /* identifiers */
-id_ssa : '%' ID #ValueID ;
-ssa_id : PERCENT_SYMBOL suffix_id (HASH_SYMBOL DIGIT+)? ;
-symbol_ref_id : AT_SYMBOL (suffix_id | string_literal) ;
-block_id : CARET_SYMBOL suffix_id ;
-type_alias : EXCLAMATION_SYMBOL (string_literal | bare_id) #TypeAlias ;
-map_or_set_id : HASH_SYMBOL suffix_id ;
-attribute_alias : HASH_SYMBOL (string_literal | bare_id) ;
-
-ssa_id_list : ssa_id (COMMA_SYMBOL ssa_id)* ;
-
-ssa_use : ssa_id | constant_literal ;
-ssa_use_list : ssa_use (COMMA_SYMBOL ssa_use)* ;
+id_ssa          : '%' ID #ValueID ;
+ssa_id          : '%' suffix_id ('#' DIGIT+)? #SsaID ;
+symbol_ref_id   : '@' (suffix_id | string_literal) #SymbolRefID;
+block_id        : '^' suffix_id #BlockID ;
+type_alias      : '!' (string_literal | bare_id) ;
+map_or_set_id   : '#' suffix_id #MapOrSetID ;
+attribute_alias : '#' (string_literal | bare_id) #AttributeAlias ;
+ssa_id_list     : ssa_id (',' ssa_id)*   #SsaIDList ;
+ssa_use         : ssa_id | constant_literal ;
+ssa_use_list    : ssa_use (',' ssa_use)* #SsaUseList ;
 
 /* type keywords */
-none_type : NONE #None ;
-float_type : FLOAT #FloatType ;
-index_type : INDEX #IndexType ;
-inttype_width : INTTYPE_WIDTH #IntTypeWidth ;
-signed_integer_type   : SIGNED_INTEGER inttype_width #SignedIntegerType ;
-unsigned_integer_type : UNSIGNED_INTEGER inttype_width #UnsignedIntegerType ;
-signless_integer_type : SIGNLESS_INTEGER inttype_width #SignlessIntegerType ;
-integer_type : signed_integer_type | unsigned_integer_type | signless_integer_type ;
-complex_type : COMPLEX LT_SYMBOL type GT_SYMBOL #ComplexType ;
-tuple_type : TUPLE LT_SYMBOL type GT_SYMBOL #TupleType ; // TODO: fix this
+none_type             : 'none' #None ;
+float_type            : 'f16' | 'bf16' | 'f32' | 'f64' #FloatType ;
+index_type            : 'index'  ;
+inttype_width         : INTTYPE_WIDTH #IntTypeWidth ;
+signed_integer_type   : 'si' inttype_width #SignedIntegerType ;
+unsigned_integer_type : 'ui' inttype_width #UnsignedIntegerType ;
+signless_integer_type : 'i' inttype_width #SignlessIntegerType ;
+integer_type          : signed_integer_type | unsigned_integer_type | signless_integer_type ;
+complex_type          : 'complex' LT_SYMBOL type GT_SYMBOL  ;
+tuple_type            : 'tuple' LT_SYMBOL type GT_SYMBOL ; // TODO: fix this
 
 /* vector type */
 vector_element_type : float_type | integer_type ;
-vector_type : VECTOR LT_SYMBOL static_dimension_list vector_element_type GT_SYMBOL #VectorType ;
+vector_type         : 'vector' LT_SYMBOL static_dimension_list vector_element_type GT_SYMBOL ;
 
 /* tensor type */
 tensor_memref_element_type : vector_element_type | vector_type | complex_type | type_alias ;
-ranked_tensor_type : TENSOR LT_SYMBOL dimension_list_ranked tensor_memref_element_type GT_SYMBOL #RankedTensorType ;
-unranked_tensor_type : TENSOR LT_SYMBOL dimension_list_unranked tensor_memref_element_type GT_SYMBOL #UnrankedTensorType ;
-tensor_type_a : ranked_tensor_type | unranked_tensor_type ; // TODO: rename this
+ranked_tensor_type         : 'tensor' LT_SYMBOL dimension_list_ranked tensor_memref_element_type GT_SYMBOL #RankedTensorType ;
+unranked_tensor_type       : 'tensor' LT_SYMBOL dimension_list_unranked tensor_memref_element_type GT_SYMBOL #UnrankedTensorType ;
+tensor_type                : ranked_tensor_type | unranked_tensor_type ;
 
 /* memref type */
-stride_list : LSQUARE_PAREN (dimension (COMMA_SYMBOL dimension)*)? RSQUARE_PAREN #StrideList ;
-strided_layout : OFFSET dimension COMMA_SYMBOL STRIDES stride_list #StridedLayout ;
+stride_list          : '[' (dimension (',' dimension)*)? ']' #StrideList ;
+strided_layout       : 'offset:' dimension ',' 'strides: ' stride_list #StridedLayout ;
 layout_specification : semi_affine_map | strided_layout ;
-memory_space : integer_literal ;
-ranked_memref_type : MEMREF LT_SYMBOL dimension_list_ranked tensor_memref_element_type optional_layout_specification optional_memory_space GT_SYMBOL ;
-unranked_memref_type : MEMREF '<*x' tensor_memref_element_type optional_memory_space '>' ;
-memref_type : ranked_memref_type | unranked_memref_type ;
-
-opaque_dialect_item : bare_id '<' string_literal '>' ;
-pretty_dialect_item : bare_id '.' bare_id pretty_dialect_item_body? ;
-pretty_dialect_item_body : '<' pretty_dialect_item_contents (',' pretty_dialect_item_contents)* '>' ;
-pretty_dialect_item_contents : ('(' pretty_dialect_item_contents ')')
-                              | ('[' pretty_dialect_item_contents ']')
-                              | ('{' pretty_dialect_item_contents '}')
-                              | bare_id
-                              | constant_literal
-                              | type
-                              ;
+memory_space         : integer_literal ;
+ranked_memref_type   : 'memref' LT_SYMBOL dimension_list_ranked tensor_memref_element_type optional_layout_specification optional_memory_space GT_SYMBOL ;
+unranked_memref_type : 'memref' '<*x' tensor_memref_element_type optional_memory_space '>' ;
+memref_type          : ranked_memref_type | unranked_memref_type ;
 
 /* dialect types */
-dialect_type : EXCLAMATION_SYMBOL (opaque_dialect_item | pretty_dialect_item) ;
+opaque_dialect_item      : bare_id '<' string_literal '>' ;
+pretty_dialect_item      : bare_id '.' bare_id pretty_dialect_item_body? ;
+pretty_dialect_item_body : '<' pretty_dialect_item_contents (',' pretty_dialect_item_contents)* '>' ;
+pretty_dialect_item_contents
+    : ('(' pretty_dialect_item_contents ')')
+    | ('[' pretty_dialect_item_contents ']')
+    | ('{' pretty_dialect_item_contents '}')
+    | bare_id
+    | constant_literal
+    | type
+    ;
+
+/* dialect types */
+dialect_type : '!' (opaque_dialect_item | pretty_dialect_item) ;
 
 /* final type definition */
 non_function_type
-    : type_alias | complex_type | float_type | index_type | integer_type | memref_type | none_type | tensor_type_a | tuple_type | vector_type | dialect_type
+    : type_alias | complex_type | float_type | index_type | integer_type | memref_type | none_type | tensor_type | tuple_type | vector_type | dialect_type
     ;
+
+
+
+// TODO: add missing "non_function_type" production
+
+/*
+TODO: add the following productions
+    1. function_type
+*/
 type
-    : type_alias | dialect_type | complex_type | float_literal | function_type | type ((LPAREN RPAREN) | (LPAREN type (COMMA_SYMBOL type)* RPAREN)) | index_type | integer_type | memref_type | none_type | tensor_type_a | tuple_type | vector_type
+    : '!' (string_literal | bare_id) #TypeAlias
+    | 'complex' LT_SYMBOL type GT_SYMBOL #ComplexType
+    | float_type #FloatType
+    | type (LPAREN RPAREN) #LLVMFunctionTypeWithoutArgs
+    | (LPAREN type (',' type)* RPAREN) #LLVMFunctionTypeWithArgs
+    | 'index' #IndexType
+    | integer_type #IntegerType
+    | 'none' #NoneType
+    | 'tuple' LT_SYMBOL type GT_SYMBOL #TupleType
+    | memref_type #MemrefType
+    | vector_type #VectorType
+    | tensor_type #TensorType
+    | dialect_type #DialectType
     ;
+
+type_list_no_parens : type (',' type)* ;
+type_list_parens : ('(' ')') | ('(' type_list_no_parens ')') ;
 
 /* uses of types */
 //type_list_no_parens : type (COMMA_SYMBOL type)* ;
@@ -193,9 +215,9 @@ type_attribute : type ;
 unit_attribute : UNIT ;
 
 /* elements attribute types */
-dense_elements_attribute : DENSE LT_SYMBOL attribute_value GT_SYMBOL COLON_SYMBOL (tensor_type_a | vector_type) ;
-opaque_elements_attribute : OPAQUE LT_SYMBOL bare_id COMMA_SYMBOL hexadecimal_literal GT_SYMBOL COLON_SYMBOL (tensor_type_a | vector_type) ;
-sparse_elements_attribute : SPARSE LT_SYMBOL attribute_value COMMA_SYMBOL attribute_value GT_SYMBOL COLON_SYMBOL (tensor_type_a | vector_type) ;
+dense_elements_attribute : DENSE LT_SYMBOL attribute_value GT_SYMBOL COLON_SYMBOL (tensor_type | vector_type) ;
+opaque_elements_attribute : OPAQUE LT_SYMBOL bare_id COMMA_SYMBOL hexadecimal_literal GT_SYMBOL COLON_SYMBOL (tensor_type | vector_type) ;
+sparse_elements_attribute : SPARSE LT_SYMBOL attribute_value COMMA_SYMBOL attribute_value GT_SYMBOL COLON_SYMBOL (tensor_type | vector_type) ;
 
 standard_attribute
     : array_attribute | bool_attribute | dictionary_attribute | elements_attribute | float_attribute | integer_attribute | integer_set_attribute | string_attribute | symbol_ref_attribute | type_attribute | unit_attribute
