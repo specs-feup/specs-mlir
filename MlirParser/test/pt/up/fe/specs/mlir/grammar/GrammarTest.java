@@ -48,21 +48,4 @@ public class GrammarTest {
         // parse(lex, parser, "r");
     }
 
-    /*
-    public static void parse(Lexer lex, Parser parser, String ruleName) {
-        lex.removeErrorListeners();
-    
-        parser.
-        // lex.addErrorListener(new ThrowingErrorListener());
-    
-        ParseTree node = (ParseTree) SpecsSystem.invoke(parser, ruleName, new Object[0]);
-        if (parser.getNumberOfSyntaxErrors() > 0) {
-            return;
-        } else {
-            System.out.println(node.toStringTree());
-        }
-    
-    
-    }
-    */
 }
