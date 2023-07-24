@@ -29,7 +29,7 @@ public class GrammarTest {
 
     @Test
     public void test() {
-        String code = "memref<?xbf16>";
+        String code = "%t_tensor = \"toy.transpose\"(%t_tensor) {inplace = true} : (tensor<2x3xf64>) -> tensor<3x2xf64> loc(\"example/file/path\":12:1)";
         // Convert code string into a character stream
         var input = new ANTLRInputStream(code);
         // Transform characters into tokens using the lexer
