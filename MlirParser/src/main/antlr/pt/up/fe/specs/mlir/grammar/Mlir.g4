@@ -19,7 +19,7 @@ LOCATION         : '"' [A-Za-z0-9_/]+ '"' ':'[0-9]+':'[0-9]+;
 WS : [ \t\r\n]+ -> skip ;
 
 // %t_tensor = "toy.transpose"(%tensor) {inplace = true} : (tensor<2x3xf64>) -> tensor<3x2xf64> loc("example/file/path":12:1)
-root : operation_result operation_name operand_list attributes ':' operand_type_list '->' operation_return_type_list trailing_location;         // match keyword hello followed by an identifier
+root : operation;         // match keyword hello followed by an identifier
 
 /* literals */
 decimal_literal     : DIGIT+;
@@ -29,10 +29,10 @@ float_literal       : FLOAT_PRECISION;
 string_literal      : '"' LETTER+ '"';
 
 /* identifiers */
-id_ssa : '%' ID #ValueID ;
+id_ssa : '%' ID #ValueID;
 
 /* dimensions */
-dimension_list_ranked : (RANKED_DIMENSION)* #RankedDimensionList ;
+dimension_list_ranked : (RANKED_DIMENSION)* #RankedDimensionList;
 
 /* simple types */
 none_type             : 'none';
@@ -46,9 +46,10 @@ complex_type          : 'complex' '<' type '>';
 tuple_type            : 'tuple' '<' type '>';
 
 /* tensor type */
-tensor_type : 'tensor' '<' dimension_list_ranked float_type '>' #TensorType ;
+tensor_type : 'tensor' '<' dimension_list_ranked float_type '>' #TensorType;
 
 /* final type declaration */
+// TODO: Add more types
 type
     : none_type #NoneType
     | index_type #IndexType
@@ -56,29 +57,29 @@ type
     | integer_type #IntegerType
     | complex_type #ComplexType
     | tuple_type #TupleType
-    | tensor_type #TypeDeclaration  /* TODO: Add more types */
+    | tensor_type #TypeDeclaration
     ;
 
 /* operands */
-operand           : id_ssa #InputOperand ;
-operand_list      : '(' operand (',' operand)* ')' #OperandList ;
-operand_type_list : '(' type (',' type)* ')' #OperandTypeList ;
+operand           : id_ssa #InputOperand;
+operand_list      : '(' operand (',' operand)* ')' #OperandList;
+operand_type_list : '(' type (',' type)* ')' #OperandTypeList;
 
 /* attributes */
-attributes_property : ID #AttributePropety ;
-attributes_value    : (ID | DIGIT) #AttributeValue ;
-attributes_entry    : attributes_property '=' attributes_value #AttributeEntry ;
-attributes          : '{' attributes_entry (',' attributes_entry)* '}' #AttributeDictionary ;
+attributes_property : ID #AttributePropety;
+attributes_value    : (ID | DIGIT) #AttributeValue;
+attributes_entry    : attributes_property '=' attributes_value #AttributeEntry;
+attributes          : '{' attributes_entry (',' attributes_entry)* '}' #AttributeDictionary;
 
 /* source code location */
-trailing_location : 'loc' '(' LOCATION ')' #Location ;
+trailing_location : 'loc' '(' LOCATION ')' #TrailingLocation;
 
 /* operations */
-operation_result           : id_ssa '='  #OperationResult ;
-operation_name             : '"' ID+ '"' #OperationName ;
-operation_attributes       : attributes #OperationAttributes ;
-operation_return_type_list : type #OperationReturnTypeList ;
+op_result      : id_ssa '='  #OperationResult;
+op_name        : '"' ID+ '"' #OperationName;
+op_attributes  : attributes #OperationAttributes;
+op_return_type : type #OperationReturnTypeList;
 
 operation
-    : operation_result? operation_name operand_list attributes ':' operand_type_list '->' operation_return_type_list trailing_location
+    : op_result? op_name operand_list op_attributes ':' operand_type_list '->' op_return_type trailing_location
     ;

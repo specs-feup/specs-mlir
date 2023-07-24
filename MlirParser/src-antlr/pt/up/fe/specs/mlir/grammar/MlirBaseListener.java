@@ -402,13 +402,13 @@ public class MlirBaseListener implements MlirListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterLocation(MlirParser.LocationContext ctx) { }
+	@Override public void enterTrailingLocation(MlirParser.TrailingLocationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitLocation(MlirParser.LocationContext ctx) { }
+	@Override public void exitTrailingLocation(MlirParser.TrailingLocationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

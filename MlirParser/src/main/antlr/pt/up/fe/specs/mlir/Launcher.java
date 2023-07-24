@@ -12,7 +12,7 @@ import java.util.concurrent.ExecutionException;
 
 public class Launcher {
     public static void main(String[] args) {
-        String code = "memref<?xbf16>";
+        String code = "%t_tensor = \"toy.transpose\"(%t_tensor) {inplace = true} : (tensor<2x3xf64>) -> tensor<3x2xf64> loc(\"example/file/path\":12:1)";
         // Convert code string into a character stream
         var input = new ANTLRInputStream(code);
         // Transform characters into tokens using the lexer
@@ -31,7 +31,7 @@ public class Launcher {
                 rootNode
         );
         var window = viewer.open();
-        /*
+
         try {
             var w = window.get();
             w.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -41,8 +41,7 @@ public class Launcher {
             throw new RuntimeException(e);
         }
 
-         */
-
         System.out.println(rootNode.toStringTree(parser));
+
     }
 }
