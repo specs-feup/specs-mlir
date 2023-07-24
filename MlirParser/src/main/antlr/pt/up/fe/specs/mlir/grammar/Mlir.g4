@@ -8,57 +8,46 @@ grammar Mlir;
 }
 
 DIGIT: [0-9] ;
+HEX_DIGIT : [0-9a-fA-F] ;
 RANKED_DIMENSION : [0-9]'x' ;
+FLOAT_PRECISION : [-+]?[0-9]+[.][0-9]*([eE][-+]?[0-9]+)? ;
 ID : [A-Za-z_][A-Za-z0-9_]* ;
 PATH : '"' [A-Za-z0-9_/]+ '"' ':'[0-9]+':'[0-9]+;
-TRUE : 'true' ;
+LETTER : [a-zA-Z] ;
+UNDERSCORE : [_] ;
+ID_CHARS : [$.] ;
 
 WS : [ \t\r\n]+ -> skip ;
 
-// %t_tensor = "toy.transpose"(%tensor) {inplace = true} : (tensor<2x3xf64>) -> tensor<3x2xf64> loc("example/file/path":12:1)
-root : operation;         // match keyword hello followed by an identifier
+root : dimension_list ;
 
-/* identifiers */
-id_ssa : '%' ID #ValueID ;
+/* literals */
+bool_literal            : 'true' | 'false' ;
+decimal_literal         : DIGIT+ ;
+hexadecimal_literal     : '0x' HEX_DIGIT+ ;
+integer_literal         : decimal_literal | hexadecimal_literal ;
+negated_integer_literal : '-' integer_literal ;
+posneg_integer_literal  : integer_literal | negated_integer_literal ;
+float_literal           : FLOAT_PRECISION ;
+string_literal          : '"' ID '"' ;
+constant_literal        : bool_literal | integer_literal | float_literal | string_literal ;
 
+/* identifier syntax */
+bare_id   : (LETTER | UNDERSCORE) (LETTER | DIGIT | UNDERSCORE | ID_CHARS)* ;
+suffix_id : DIGIT+ | bare_id ;
 
 /* dimensions */
-dimension_list_ranked : (RANKED_DIMENSION)* #RankedDimensionList ;
+dimension               : '?' | decimal_literal ;
+static_dimension_list   : (decimal_literal 'x')+ ;
+dimension_list_ranked   : RANKED_DIMENSION* ;
+dimension_list_unranked : '*' 'x' ;
+dimension_list          : dimension_list_ranked | dimension_list_unranked ;
 
-
-/* type keywords */
-keyword_type_float : 'f16' | 'f32' | 'f64' #FloatType ;
-
-/* tensor types */
-tensor_type : 'tensor' '<' dimension_list_ranked keyword_type_float '>' #TensorType ;
-
-/* final type declaration */
-type : tensor_type #TypeDeclaration ; /* TODO: Add more types */
-
-
-/* operands */
-operand : id_ssa #InputOperand ;
-operand_list : '(' operand (',' operand)* ')' #OperandList ;
-operand_type_list : '(' type (',' type)* ')' #OperandTypeList ;
-
-
-/* attributes */
-attributes_property : ID #AttributePropety ;
-attributes_value : (ID | DIGIT) #AttributeValue ;
-attributes_entry : attributes_property '=' attributes_value #AttributeEntry ;
-attributes : '{' attributes_entry (',' attributes_entry)* '}' #AttributeDictionary ;
-
-
-/* source code location */
-loc : 'loc' '(' PATH ')' #Location ;
-
-
-/* operations */
-operation_result : id_ssa '='  #OperationResult ;
-operation_name : '"' ID+ '"' #OperationName ;
-operation_attributes : attributes #OperationAttributes ;
-operation_return_type_list : '(' type (',' type)* ')' #OperationReturnTypeList ;
-
-operation
-    : operation_result? operation_name operand_list attributes ':' operand_type_list '->' operation_return_type_list loc
-    ;
+/* identifiers */
+ssa_id          : '%' suffix_id ('#' DIGIT+)? ;
+symbol_ref_id   : '@' (suffix_id | string_literal) ;
+block_id        : '^' suffix_id ;
+type_alias      : '!' (string_literal | bare_id) ;
+map_or_set_id   : '#' suffix_id ;
+attribute_alias : '#' (string_literal | bare_id) ;
+ssa_id_list     : ssa_id (',' ssa_id)* ;

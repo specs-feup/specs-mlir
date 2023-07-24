@@ -20,215 +20,163 @@ public interface MlirListener extends ParseTreeListener {
 	 */
 	void exitRoot(MlirParser.RootContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code ValueID}
-	 * labeled alternative in {@link MlirParser#id_ssa}.
+	 * Enter a parse tree produced by {@link MlirParser#bool_literal}.
 	 * @param ctx the parse tree
 	 */
-	void enterValueID(MlirParser.ValueIDContext ctx);
+	void enterBool_literal(MlirParser.Bool_literalContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code ValueID}
-	 * labeled alternative in {@link MlirParser#id_ssa}.
+	 * Exit a parse tree produced by {@link MlirParser#bool_literal}.
 	 * @param ctx the parse tree
 	 */
-	void exitValueID(MlirParser.ValueIDContext ctx);
+	void exitBool_literal(MlirParser.Bool_literalContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code RankedDimensionList}
-	 * labeled alternative in {@link MlirParser#dimension_list_ranked}.
+	 * Enter a parse tree produced by {@link MlirParser#decimal_literal}.
 	 * @param ctx the parse tree
 	 */
-	void enterRankedDimensionList(MlirParser.RankedDimensionListContext ctx);
+	void enterDecimal_literal(MlirParser.Decimal_literalContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code RankedDimensionList}
-	 * labeled alternative in {@link MlirParser#dimension_list_ranked}.
+	 * Exit a parse tree produced by {@link MlirParser#decimal_literal}.
 	 * @param ctx the parse tree
 	 */
-	void exitRankedDimensionList(MlirParser.RankedDimensionListContext ctx);
+	void exitDecimal_literal(MlirParser.Decimal_literalContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link MlirParser#keyword_type_float}.
+	 * Enter a parse tree produced by {@link MlirParser#hexadecimal_literal}.
 	 * @param ctx the parse tree
 	 */
-	void enterKeyword_type_float(MlirParser.Keyword_type_floatContext ctx);
+	void enterHexadecimal_literal(MlirParser.Hexadecimal_literalContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link MlirParser#keyword_type_float}.
+	 * Exit a parse tree produced by {@link MlirParser#hexadecimal_literal}.
 	 * @param ctx the parse tree
 	 */
-	void exitKeyword_type_float(MlirParser.Keyword_type_floatContext ctx);
+	void exitHexadecimal_literal(MlirParser.Hexadecimal_literalContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code TensorType}
-	 * labeled alternative in {@link MlirParser#tensor_type}.
+	 * Enter a parse tree produced by {@link MlirParser#integer_literal}.
 	 * @param ctx the parse tree
 	 */
-	void enterTensorType(MlirParser.TensorTypeContext ctx);
+	void enterInteger_literal(MlirParser.Integer_literalContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code TensorType}
-	 * labeled alternative in {@link MlirParser#tensor_type}.
+	 * Exit a parse tree produced by {@link MlirParser#integer_literal}.
 	 * @param ctx the parse tree
 	 */
-	void exitTensorType(MlirParser.TensorTypeContext ctx);
+	void exitInteger_literal(MlirParser.Integer_literalContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code TypeDeclaration}
-	 * labeled alternative in {@link MlirParser#type}.
+	 * Enter a parse tree produced by {@link MlirParser#negated_integer_literal}.
 	 * @param ctx the parse tree
 	 */
-	void enterTypeDeclaration(MlirParser.TypeDeclarationContext ctx);
+	void enterNegated_integer_literal(MlirParser.Negated_integer_literalContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code TypeDeclaration}
-	 * labeled alternative in {@link MlirParser#type}.
+	 * Exit a parse tree produced by {@link MlirParser#negated_integer_literal}.
 	 * @param ctx the parse tree
 	 */
-	void exitTypeDeclaration(MlirParser.TypeDeclarationContext ctx);
+	void exitNegated_integer_literal(MlirParser.Negated_integer_literalContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code InputOperand}
-	 * labeled alternative in {@link MlirParser#operand}.
+	 * Enter a parse tree produced by {@link MlirParser#posneg_integer_literal}.
 	 * @param ctx the parse tree
 	 */
-	void enterInputOperand(MlirParser.InputOperandContext ctx);
+	void enterPosneg_integer_literal(MlirParser.Posneg_integer_literalContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code InputOperand}
-	 * labeled alternative in {@link MlirParser#operand}.
+	 * Exit a parse tree produced by {@link MlirParser#posneg_integer_literal}.
 	 * @param ctx the parse tree
 	 */
-	void exitInputOperand(MlirParser.InputOperandContext ctx);
+	void exitPosneg_integer_literal(MlirParser.Posneg_integer_literalContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code OperandList}
-	 * labeled alternative in {@link MlirParser#operand_list}.
+	 * Enter a parse tree produced by {@link MlirParser#float_literal}.
 	 * @param ctx the parse tree
 	 */
-	void enterOperandList(MlirParser.OperandListContext ctx);
+	void enterFloat_literal(MlirParser.Float_literalContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code OperandList}
-	 * labeled alternative in {@link MlirParser#operand_list}.
+	 * Exit a parse tree produced by {@link MlirParser#float_literal}.
 	 * @param ctx the parse tree
 	 */
-	void exitOperandList(MlirParser.OperandListContext ctx);
+	void exitFloat_literal(MlirParser.Float_literalContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code OperandTypeList}
-	 * labeled alternative in {@link MlirParser#operand_type_list}.
+	 * Enter a parse tree produced by {@link MlirParser#string_literal}.
 	 * @param ctx the parse tree
 	 */
-	void enterOperandTypeList(MlirParser.OperandTypeListContext ctx);
+	void enterString_literal(MlirParser.String_literalContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code OperandTypeList}
-	 * labeled alternative in {@link MlirParser#operand_type_list}.
+	 * Exit a parse tree produced by {@link MlirParser#string_literal}.
 	 * @param ctx the parse tree
 	 */
-	void exitOperandTypeList(MlirParser.OperandTypeListContext ctx);
+	void exitString_literal(MlirParser.String_literalContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code AttributePropety}
-	 * labeled alternative in {@link MlirParser#attributes_property}.
+	 * Enter a parse tree produced by {@link MlirParser#constant_literal}.
 	 * @param ctx the parse tree
 	 */
-	void enterAttributePropety(MlirParser.AttributePropetyContext ctx);
+	void enterConstant_literal(MlirParser.Constant_literalContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code AttributePropety}
-	 * labeled alternative in {@link MlirParser#attributes_property}.
+	 * Exit a parse tree produced by {@link MlirParser#constant_literal}.
 	 * @param ctx the parse tree
 	 */
-	void exitAttributePropety(MlirParser.AttributePropetyContext ctx);
+	void exitConstant_literal(MlirParser.Constant_literalContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code AttributeValue}
-	 * labeled alternative in {@link MlirParser#attributes_value}.
+	 * Enter a parse tree produced by {@link MlirParser#bare_id}.
 	 * @param ctx the parse tree
 	 */
-	void enterAttributeValue(MlirParser.AttributeValueContext ctx);
+	void enterBare_id(MlirParser.Bare_idContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code AttributeValue}
-	 * labeled alternative in {@link MlirParser#attributes_value}.
+	 * Exit a parse tree produced by {@link MlirParser#bare_id}.
 	 * @param ctx the parse tree
 	 */
-	void exitAttributeValue(MlirParser.AttributeValueContext ctx);
+	void exitBare_id(MlirParser.Bare_idContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code AttributeEntry}
-	 * labeled alternative in {@link MlirParser#attributes_entry}.
+	 * Enter a parse tree produced by {@link MlirParser#suffix_id}.
 	 * @param ctx the parse tree
 	 */
-	void enterAttributeEntry(MlirParser.AttributeEntryContext ctx);
+	void enterSuffix_id(MlirParser.Suffix_idContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code AttributeEntry}
-	 * labeled alternative in {@link MlirParser#attributes_entry}.
+	 * Exit a parse tree produced by {@link MlirParser#suffix_id}.
 	 * @param ctx the parse tree
 	 */
-	void exitAttributeEntry(MlirParser.AttributeEntryContext ctx);
+	void exitSuffix_id(MlirParser.Suffix_idContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code AttributeDictionary}
-	 * labeled alternative in {@link MlirParser#attributes}.
+	 * Enter a parse tree produced by {@link MlirParser#dimension}.
 	 * @param ctx the parse tree
 	 */
-	void enterAttributeDictionary(MlirParser.AttributeDictionaryContext ctx);
+	void enterDimension(MlirParser.DimensionContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code AttributeDictionary}
-	 * labeled alternative in {@link MlirParser#attributes}.
+	 * Exit a parse tree produced by {@link MlirParser#dimension}.
 	 * @param ctx the parse tree
 	 */
-	void exitAttributeDictionary(MlirParser.AttributeDictionaryContext ctx);
+	void exitDimension(MlirParser.DimensionContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code Location}
-	 * labeled alternative in {@link MlirParser#loc}.
+	 * Enter a parse tree produced by {@link MlirParser#static_dimension_list}.
 	 * @param ctx the parse tree
 	 */
-	void enterLocation(MlirParser.LocationContext ctx);
+	void enterStatic_dimension_list(MlirParser.Static_dimension_listContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code Location}
-	 * labeled alternative in {@link MlirParser#loc}.
+	 * Exit a parse tree produced by {@link MlirParser#static_dimension_list}.
 	 * @param ctx the parse tree
 	 */
-	void exitLocation(MlirParser.LocationContext ctx);
+	void exitStatic_dimension_list(MlirParser.Static_dimension_listContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code OperationResult}
-	 * labeled alternative in {@link MlirParser#operation_result}.
+	 * Enter a parse tree produced by {@link MlirParser#dimension_list_ranked}.
 	 * @param ctx the parse tree
 	 */
-	void enterOperationResult(MlirParser.OperationResultContext ctx);
+	void enterDimension_list_ranked(MlirParser.Dimension_list_rankedContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code OperationResult}
-	 * labeled alternative in {@link MlirParser#operation_result}.
+	 * Exit a parse tree produced by {@link MlirParser#dimension_list_ranked}.
 	 * @param ctx the parse tree
 	 */
-	void exitOperationResult(MlirParser.OperationResultContext ctx);
+	void exitDimension_list_ranked(MlirParser.Dimension_list_rankedContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code OperationName}
-	 * labeled alternative in {@link MlirParser#operation_name}.
+	 * Enter a parse tree produced by {@link MlirParser#dimension_list_unranked}.
 	 * @param ctx the parse tree
 	 */
-	void enterOperationName(MlirParser.OperationNameContext ctx);
+	void enterDimension_list_unranked(MlirParser.Dimension_list_unrankedContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code OperationName}
-	 * labeled alternative in {@link MlirParser#operation_name}.
+	 * Exit a parse tree produced by {@link MlirParser#dimension_list_unranked}.
 	 * @param ctx the parse tree
 	 */
-	void exitOperationName(MlirParser.OperationNameContext ctx);
+	void exitDimension_list_unranked(MlirParser.Dimension_list_unrankedContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code OperationAttributes}
-	 * labeled alternative in {@link MlirParser#operation_attributes}.
+	 * Enter a parse tree produced by {@link MlirParser#dimension_list}.
 	 * @param ctx the parse tree
 	 */
-	void enterOperationAttributes(MlirParser.OperationAttributesContext ctx);
+	void enterDimension_list(MlirParser.Dimension_listContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code OperationAttributes}
-	 * labeled alternative in {@link MlirParser#operation_attributes}.
+	 * Exit a parse tree produced by {@link MlirParser#dimension_list}.
 	 * @param ctx the parse tree
 	 */
-	void exitOperationAttributes(MlirParser.OperationAttributesContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code OperationReturnType}
-	 * labeled alternative in {@link MlirParser#operation_return_type}.
-	 * @param ctx the parse tree
-	 */
-	void enterOperationReturnType(MlirParser.OperationReturnTypeContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code OperationReturnType}
-	 * labeled alternative in {@link MlirParser#operation_return_type}.
-	 * @param ctx the parse tree
-	 */
-	void exitOperationReturnType(MlirParser.OperationReturnTypeContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link MlirParser#operation}.
-	 * @param ctx the parse tree
-	 */
-	void enterOperation(MlirParser.OperationContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link MlirParser#operation}.
-	 * @param ctx the parse tree
-	 */
-	void exitOperation(MlirParser.OperationContext ctx);
+	void exitDimension_list(MlirParser.Dimension_listContext ctx);
 }

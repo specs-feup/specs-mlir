@@ -27,7 +27,7 @@ public class GrammarTest {
     @Test
     public void test() {
         // Convert code string into a character stream
-        var input = new ANTLRInputStream("%a_b = \"b\"(%c, %d){e = f, g = h} : (tensor<2x3xf64>) -> tensor<2x3xf64> loc(\"i/j/k\":12:1)");
+        var input = new ANTLRInputStream("2x3x2x3x3x");
         // Transform characters into tokens using the lexer
         var lex = new MlirLexer(input); // Will we interact with this?
 
