@@ -120,11 +120,12 @@ public class AntlrToMlirNodeConverter {
     }
 
     private static GenericOperation convertGenericOperation(GenericOperationContext genOp, ConverterData data) {
-        var op = newOperation(genOp, data);
-        var genOpNode = data.getContext().getFactory().genericOperation(genOp.name.getText());
-        genOpNode.getData().addAll(op);
-
-        return genOpNode;
+        // var op = newOperation(genOp, data);
+        // var genOpNode = data.getContext().getFactory().genericOperation(genOp.name.getText());
+        // genOpNode.getData().addAll(op);
+        //
+        // return genOpNode;
+        return null;
     }
 
     private static Root convertDefault(ParseTree node, ConverterData data) {
