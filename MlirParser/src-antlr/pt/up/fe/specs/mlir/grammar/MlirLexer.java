@@ -1,4 +1,4 @@
-// Generated from pt/up/fe/specs/mlir/grammar/Mlir.g4 by ANTLR 4.5.3
+// Generated from pt\u005Cup\fe\specs\mlir\grammar\Mlir.g4 by ANTLR 4.5.3
 
     package pt.up.fe.specs.mlir.grammar;
 

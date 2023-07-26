@@ -1,4 +1,4 @@
-// Generated from pt/up/fe/specs/mlir/grammar/Mlir.g4 by ANTLR 4.5.3
+// Generated from pt\u005Cup\fe\specs\mlir\grammar\Mlir.g4 by ANTLR 4.5.3
 
     package pt.up.fe.specs.mlir.grammar;
 
@@ -30,205 +30,85 @@ public class MlirBaseListener implements MlirListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterDecimal_literal(MlirParser.Decimal_literalContext ctx) { }
+	@Override public void enterDecimalLiteral(MlirParser.DecimalLiteralContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitDecimal_literal(MlirParser.Decimal_literalContext ctx) { }
+	@Override public void exitDecimalLiteral(MlirParser.DecimalLiteralContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterHexadecimal_literal(MlirParser.Hexadecimal_literalContext ctx) { }
+	@Override public void enterHexadecimalLiteral(MlirParser.HexadecimalLiteralContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitHexadecimal_literal(MlirParser.Hexadecimal_literalContext ctx) { }
+	@Override public void exitHexadecimalLiteral(MlirParser.HexadecimalLiteralContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterInteger_literal(MlirParser.Integer_literalContext ctx) { }
+	@Override public void enterIntegerLiteral(MlirParser.IntegerLiteralContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitInteger_literal(MlirParser.Integer_literalContext ctx) { }
+	@Override public void exitIntegerLiteral(MlirParser.IntegerLiteralContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFloat_literal(MlirParser.Float_literalContext ctx) { }
+	@Override public void enterFloatLiteral(MlirParser.FloatLiteralContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitFloat_literal(MlirParser.Float_literalContext ctx) { }
+	@Override public void exitFloatLiteral(MlirParser.FloatLiteralContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterString_literal(MlirParser.String_literalContext ctx) { }
+	@Override public void enterStringLiteral(MlirParser.StringLiteralContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitString_literal(MlirParser.String_literalContext ctx) { }
+	@Override public void exitStringLiteral(MlirParser.StringLiteralContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterValueID(MlirParser.ValueIDContext ctx) { }
+	@Override public void enterIdSsa(MlirParser.IdSsaContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitValueID(MlirParser.ValueIDContext ctx) { }
+	@Override public void exitIdSsa(MlirParser.IdSsaContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterRankedDimensionList(MlirParser.RankedDimensionListContext ctx) { }
+	@Override public void enterDimensionListRanked(MlirParser.DimensionListRankedContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitRankedDimensionList(MlirParser.RankedDimensionListContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterNone_type(MlirParser.None_typeContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitNone_type(MlirParser.None_typeContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterIndex_type(MlirParser.Index_typeContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitIndex_type(MlirParser.Index_typeContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterFloat_type(MlirParser.Float_typeContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitFloat_type(MlirParser.Float_typeContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterSigned_integer_type(MlirParser.Signed_integer_typeContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitSigned_integer_type(MlirParser.Signed_integer_typeContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterUnsigned_integer_type(MlirParser.Unsigned_integer_typeContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitUnsigned_integer_type(MlirParser.Unsigned_integer_typeContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterSignless_integer_type(MlirParser.Signless_integer_typeContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitSignless_integer_type(MlirParser.Signless_integer_typeContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterInteger_type(MlirParser.Integer_typeContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitInteger_type(MlirParser.Integer_typeContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterComplex_type(MlirParser.Complex_typeContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitComplex_type(MlirParser.Complex_typeContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterTuple_type(MlirParser.Tuple_typeContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitTuple_type(MlirParser.Tuple_typeContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterTensorType(MlirParser.TensorTypeContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitTensorType(MlirParser.TensorTypeContext ctx) { }
+	@Override public void exitDimensionListRanked(MlirParser.DimensionListRankedContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -270,6 +150,42 @@ public class MlirBaseListener implements MlirListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterSignedIntegerType(MlirParser.SignedIntegerTypeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSignedIntegerType(MlirParser.SignedIntegerTypeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterUnsignedIntegerType(MlirParser.UnsignedIntegerTypeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitUnsignedIntegerType(MlirParser.UnsignedIntegerTypeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterSignlessIntegerType(MlirParser.SignlessIntegerTypeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSignlessIntegerType(MlirParser.SignlessIntegerTypeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterIntegerType(MlirParser.IntegerTypeContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -306,25 +222,37 @@ public class MlirBaseListener implements MlirListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterTypeDeclaration(MlirParser.TypeDeclarationContext ctx) { }
+	@Override public void enterTensorType(MlirParser.TensorTypeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitTypeDeclaration(MlirParser.TypeDeclarationContext ctx) { }
+	@Override public void exitTensorType(MlirParser.TensorTypeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterInputOperand(MlirParser.InputOperandContext ctx) { }
+	@Override public void enterType(MlirParser.TypeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitInputOperand(MlirParser.InputOperandContext ctx) { }
+	@Override public void exitType(MlirParser.TypeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterOperand(MlirParser.OperandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitOperand(MlirParser.OperandContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -354,49 +282,49 @@ public class MlirBaseListener implements MlirListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterAttributePropety(MlirParser.AttributePropetyContext ctx) { }
+	@Override public void enterAttributesProperty(MlirParser.AttributesPropertyContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitAttributePropety(MlirParser.AttributePropetyContext ctx) { }
+	@Override public void exitAttributesProperty(MlirParser.AttributesPropertyContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterAttributeValue(MlirParser.AttributeValueContext ctx) { }
+	@Override public void enterAttributesValue(MlirParser.AttributesValueContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitAttributeValue(MlirParser.AttributeValueContext ctx) { }
+	@Override public void exitAttributesValue(MlirParser.AttributesValueContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterAttributeEntry(MlirParser.AttributeEntryContext ctx) { }
+	@Override public void enterAttributesEntry(MlirParser.AttributesEntryContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitAttributeEntry(MlirParser.AttributeEntryContext ctx) { }
+	@Override public void exitAttributesEntry(MlirParser.AttributesEntryContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterAttributeDictionary(MlirParser.AttributeDictionaryContext ctx) { }
+	@Override public void enterAttributes(MlirParser.AttributesContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitAttributeDictionary(MlirParser.AttributeDictionaryContext ctx) { }
+	@Override public void exitAttributes(MlirParser.AttributesContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -414,37 +342,37 @@ public class MlirBaseListener implements MlirListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterOperationResult(MlirParser.OperationResultContext ctx) { }
+	@Override public void enterOpResult(MlirParser.OpResultContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitOperationResult(MlirParser.OperationResultContext ctx) { }
+	@Override public void exitOpResult(MlirParser.OpResultContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterOperationAttributes(MlirParser.OperationAttributesContext ctx) { }
+	@Override public void enterOpAttributes(MlirParser.OpAttributesContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitOperationAttributes(MlirParser.OperationAttributesContext ctx) { }
+	@Override public void exitOpAttributes(MlirParser.OpAttributesContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterOperationReturnTypeList(MlirParser.OperationReturnTypeListContext ctx) { }
+	@Override public void enterOpReturnType(MlirParser.OpReturnTypeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitOperationReturnTypeList(MlirParser.OperationReturnTypeListContext ctx) { }
+	@Override public void exitOpReturnType(MlirParser.OpReturnTypeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
