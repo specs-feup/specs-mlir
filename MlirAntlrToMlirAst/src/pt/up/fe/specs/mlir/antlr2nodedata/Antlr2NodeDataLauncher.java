@@ -23,7 +23,8 @@ public class Antlr2NodeDataLauncher {
 
     public static void main(String[] args) {
         // Convert code string into a character stream
-        var input = new ANTLRInputStream("hello a");
+    	String code = "%t_tensor = \"toy.transpose\"(%t_tensor) {inplace = true} : (tensor<2x3xf64>) -> tensor<3x2xf64> loc(\"example/file/path\":12:1)";
+        var input = new ANTLRInputStream(code);
         // Transform characters into tokens using the lexer
         var lex = new MlirLexer(input); // Will we interact with this?
 
@@ -36,6 +37,8 @@ public class Antlr2NodeDataLauncher {
 
         System.out.println(rootNode.toStringTree());
 
+        var nodeData = new AntlrToMlirNodeConverter(parser).convert(rootNode);
+        System.out.println("DATA:\n" + nodeData.toTree());
     }
 
 }

@@ -13,17 +13,16 @@
 
 package pt.up.fe.specs.mlir.grammar;
 
-import org.antlr.runtime.tree.Tree;
+import java.util.Arrays;
+import java.util.concurrent.ExecutionException;
+
+import javax.swing.JFrame;
+
 import org.antlr.v4.gui.TreeViewer;
-import org.antlr.v4.parse.ANTLRParser;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 // import pt.up.fe.specs.util.SpecsSystem;
 import org.junit.jupiter.api.Test;
-
-import javax.swing.*;
-import java.util.Arrays;
-import java.util.concurrent.ExecutionException;
 
 public class GrammarTest {
 

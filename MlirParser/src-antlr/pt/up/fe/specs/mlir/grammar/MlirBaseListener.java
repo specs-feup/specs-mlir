@@ -426,18 +426,6 @@ public class MlirBaseListener implements MlirListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterOperationName(MlirParser.OperationNameContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitOperationName(MlirParser.OperationNameContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterOperationAttributes(MlirParser.OperationAttributesContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -462,13 +450,25 @@ public class MlirBaseListener implements MlirListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterOperation(MlirParser.OperationContext ctx) { }
+	@Override public void enterGenericOperation(MlirParser.GenericOperationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitOperation(MlirParser.OperationContext ctx) { }
+	@Override public void exitGenericOperation(MlirParser.GenericOperationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterCustomOperation(MlirParser.CustomOperationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitCustomOperation(MlirParser.CustomOperationContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

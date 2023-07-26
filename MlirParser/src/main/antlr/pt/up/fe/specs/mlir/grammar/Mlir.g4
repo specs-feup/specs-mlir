@@ -22,64 +22,64 @@ WS : [ \t\r\n]+ -> skip ;
 root : operation;         // match keyword hello followed by an identifier
 
 /* literals */
-decimal_literal     : DIGIT+;
-hexadecimal_literal : '0x' HEX_DIGIT+;
-integer_literal     : decimal_literal | hexadecimal_literal;
-float_literal       : FLOAT_PRECISION;
-string_literal      : '"' LETTER+ '"';
+decimalLiteral     : DIGIT+;
+hexadecimalLiteral : '0x' HEX_DIGIT+;
+integerLiteral     : decimalLiteral | hexadecimalLiteral;
+floatLiteral       : FLOAT_PRECISION;
+stringLiteral      : '"' LETTER+ '"';
 
 /* identifiers */
-id_ssa : '%' ID #ValueID;
+idSsa : '%' ID;
 
 /* dimensions */
-dimension_list_ranked : (RANKED_DIMENSION)* #RankedDimensionList;
+dimensionListRanked : (RANKED_DIMENSION)*;
 
 /* simple types */
-none_type             : 'none';
-index_type            : 'index';
-float_type            : 'f16' | 'bf16' | 'f32' | 'f64';
-signed_integer_type   : 'si' INTTYPE_WIDTH;
-unsigned_integer_type : 'ui' INTTYPE_WIDTH;
-signless_integer_type : 'i' INTTYPE_WIDTH;
-integer_type          : signed_integer_type | unsigned_integer_type | signless_integer_type;
-complex_type          : 'complex' '<' type '>';
-tuple_type            : 'tuple' '<' type '>';
+noneType            : 'none';
+indexType           : 'index';
+floatType           : 'f16' | 'bf16' | 'f32' | 'f64';
+signedIntegerType   : 'si' INTTYPE_WIDTH;
+unsignedIntegerType : 'ui' INTTYPE_WIDTH;
+signlessIntegerType : 'i' INTTYPE_WIDTH;
+integerType         : signedIntegerType | unsignedIntegerType | signlessIntegerType;
+complexType         : 'complex' '<' type '>';
+tupleType           : 'tuple' '<' type '>';
 
 /* tensor type */
-tensor_type : 'tensor' '<' dimension_list_ranked float_type '>' #TensorType;
+tensorType : 'tensor' '<' dimensionListRanked floatType '>';
 
 /* final type declaration */
 // TODO: Add more types
 type
-    : none_type #NoneType
-    | index_type #IndexType
-    | float_type #FloatType
-    | integer_type #IntegerType
-    | complex_type #ComplexType
-    | tuple_type #TupleType
-    | tensor_type #TypeDeclaration
+    : noneType
+    | indexType
+    | floatType
+    | integerType
+    | complexType
+    | tupleType
+    | tensorType
     ;
 
 /* operands */
-operand           : id_ssa #InputOperand;
-operand_list      : '(' operand (',' operand)* ')' #OperandList;
-operand_type_list : '(' type (',' type)* ')' #OperandTypeList;
+operand         : idSsa;
+operandList     : '(' operand (',' operand)* ')';
+operandTypeList : '(' type (',' type)* ')';
 
 /* attributes */
-attributes_property : ID #AttributePropety;
-attributes_value    : (ID | DIGIT) #AttributeValue;
-attributes_entry    : attributes_property '=' attributes_value #AttributeEntry;
-attributes          : '{' attributes_entry (',' attributes_entry)* '}' #AttributeDictionary;
+attributesProperty : ID;
+attributesValue    : (ID | DIGIT);
+attributesEntry    : attributesProperty '=' attributesValue;
+attributes         : '{' attributesEntry (',' attributesEntry)* '}';
 
 /* source code location */
-trailing_location : 'loc' '(' LOCATION ')' #TrailingLocation;
+trailingLocation : 'loc' '(' LOCATION ')';
 
 /* operations */
-op_result      : id_ssa '='  #OperationResult;
-op_name        : '"' ID+ '"' #OperationName;
-op_attributes  : attributes #OperationAttributes;
-op_return_type : type #OperationReturnTypeList;
+opResult     : idSsa '=';
+opAttributes : attributes;
+opReturnType : type;
 
 operation
-    : op_result? op_name operand_list op_attributes ':' operand_type_list '->' op_return_type trailing_location
+    : opResult? ('"' name = ID+ '"') operandList opAttributes ':' operandTypeList '->' opReturnType trailingLocation? #GenericOperation
+    | opResult? ID trailingLocation? #CustomOperation
     ;

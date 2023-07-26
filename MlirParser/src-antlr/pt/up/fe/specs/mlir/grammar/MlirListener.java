@@ -388,18 +388,6 @@ public interface MlirListener extends ParseTreeListener {
 	 */
 	void exitOperationResult(MlirParser.OperationResultContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code OperationName}
-	 * labeled alternative in {@link MlirParser#op_name}.
-	 * @param ctx the parse tree
-	 */
-	void enterOperationName(MlirParser.OperationNameContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code OperationName}
-	 * labeled alternative in {@link MlirParser#op_name}.
-	 * @param ctx the parse tree
-	 */
-	void exitOperationName(MlirParser.OperationNameContext ctx);
-	/**
 	 * Enter a parse tree produced by the {@code OperationAttributes}
 	 * labeled alternative in {@link MlirParser#op_attributes}.
 	 * @param ctx the parse tree
@@ -424,13 +412,27 @@ public interface MlirListener extends ParseTreeListener {
 	 */
 	void exitOperationReturnTypeList(MlirParser.OperationReturnTypeListContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link MlirParser#operation}.
+	 * Enter a parse tree produced by the {@code GenericOperation}
+	 * labeled alternative in {@link MlirParser#operation}.
 	 * @param ctx the parse tree
 	 */
-	void enterOperation(MlirParser.OperationContext ctx);
+	void enterGenericOperation(MlirParser.GenericOperationContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link MlirParser#operation}.
+	 * Exit a parse tree produced by the {@code GenericOperation}
+	 * labeled alternative in {@link MlirParser#operation}.
 	 * @param ctx the parse tree
 	 */
-	void exitOperation(MlirParser.OperationContext ctx);
+	void exitGenericOperation(MlirParser.GenericOperationContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code CustomOperation}
+	 * labeled alternative in {@link MlirParser#operation}.
+	 * @param ctx the parse tree
+	 */
+	void enterCustomOperation(MlirParser.CustomOperationContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code CustomOperation}
+	 * labeled alternative in {@link MlirParser#operation}.
+	 * @param ctx the parse tree
+	 */
+	void exitCustomOperation(MlirParser.CustomOperationContext ctx);
 }

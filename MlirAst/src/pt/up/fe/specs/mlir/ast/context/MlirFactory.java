@@ -18,6 +18,8 @@ import org.suikasoft.jOptions.storedefinition.StoreDefinitions;
 
 import pt.up.fe.specs.mlir.ast.MlirNode;
 import pt.up.fe.specs.mlir.ast.dummy.Root;
+import pt.up.fe.specs.mlir.ast.operation.GenericOperation;
+import pt.up.fe.specs.mlir.ast.operation.Operation;
 import pt.up.fe.specs.util.classmap.ClassMap;
 
 /**
@@ -104,4 +106,17 @@ public class MlirFactory {
         return new Root(data, null);
     }
 
+    /// OPERATION NODES
+
+    public Operation operation(String result) {
+        DataStore data = newDataStore(Operation.class);
+        data.set(Operation.RESULT, result);
+        return new Operation(data, null);
+    }
+    
+    public GenericOperation genericOperation(String name) {
+        DataStore data = newDataStore(GenericOperation.class);
+        data.set(GenericOperation.NAME, name);
+        return new GenericOperation(data, null);
+    }
 }
