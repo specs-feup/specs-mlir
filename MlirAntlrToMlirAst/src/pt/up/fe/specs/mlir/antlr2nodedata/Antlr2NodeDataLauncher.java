@@ -13,28 +13,31 @@
 
 package pt.up.fe.specs.mlir.antlr2nodedata;
 
-import org.antlr.v4.runtime.ANTLRInputStream;
-import org.antlr.v4.runtime.CommonTokenStream;
-
-import pt.up.fe.specs.mlir.grammar.MlirLexer;
-import pt.up.fe.specs.mlir.grammar.MlirParser;
-
 public class Antlr2NodeDataLauncher {
 
     public static void main(String[] args) {
-        // Convert code string into a character stream
-        var input = new ANTLRInputStream("hello a");
-        // Transform characters into tokens using the lexer
-        var lex = new MlirLexer(input); // Will we interact with this?
 
-        // Wrap lexer around a token stream
-        var tokens = new CommonTokenStream(lex);
-        // Transforms tokens into a parse tree
-        var parser = new MlirParser(tokens);
+        var root = AntlrToMlirNodeConverter.parse("hello a");
 
-        var rootNode = parser.root();
+        System.out.println(root.toTree());
 
-        System.out.println(rootNode.toStringTree());
+        // // Convert code string into a character stream
+        // var input = new ANTLRInputStream("hello a");
+        // // Transform characters into tokens using the lexer
+        // var lex = new MlirLexer(input); // Will we interact with this?
+        //
+        // // Wrap lexer around a token stream
+        // var tokens = new CommonTokenStream(lex);
+        // // Transforms tokens into a parse tree
+        // var parser = new MlirParser(tokens);
+        //
+        // var rootNode = parser.root();
+        //
+        // System.out.println(rootNode.toStringTree());
+        //
+        // var converter = new AntlrToMlirNodeConverter(parser);
+        // var mlirNodeRoot = converter.convert(rootNode);
+        //
 
     }
 

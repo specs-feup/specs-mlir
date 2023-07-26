@@ -17,12 +17,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.antlr.v4.runtime.ANTLRInputStream;
+import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.Parser;
 import org.antlr.v4.runtime.tree.ParseTree;
+import org.antlr.v4.runtime.tree.TerminalNode;
 
 import pt.up.fe.specs.mlir.ast.MlirNode;
 import pt.up.fe.specs.mlir.ast.context.MlirContext;
 import pt.up.fe.specs.mlir.ast.dummy.Root;
+import pt.up.fe.specs.mlir.grammar.MlirLexer;
+import pt.up.fe.specs.mlir.grammar.MlirParser;
 import pt.up.fe.specs.mlir.grammar.MlirParser.RootContext;
 import pt.up.fe.specs.util.classmap.BiFunctionClassMap;
 
@@ -42,6 +47,29 @@ public class AntlrToMlirNodeConverter {
         this.converterData = new ConverterData(parser, new MlirContext());
     }
 
+    public static MlirNode parse(String mlirCode) {
+        // Convert code string into a character stream
+        var input = new ANTLRInputStream(mlirCode);
+        // Transform characters into tokens using the lexer
+        var lex = new MlirLexer(input); // Will we interact with this?
+
+        // Wrap lexer around a token stream
+        var tokens = new CommonTokenStream(lex);
+        // Transforms tokens into a parse tree
+        var parser = new MlirParser(tokens);
+
+        var rootNode = parser.root();
+
+        // System.out.println(rootNode.toStringTree());
+
+        var converter = new AntlrToMlirNodeConverter(parser);
+        var mlirNodeRoot = converter.convert(rootNode);
+
+        // System.out.println(mlirNodeRoot.toTree());
+
+        return mlirNodeRoot;
+    }
+
     public MlirNode convert(ParseTree node) {
         // Apply converter from map
         var mlirNode = CONVERTERS.apply(node, converterData);
@@ -53,6 +81,11 @@ public class AntlrToMlirNodeConverter {
         var children = new ArrayList<MlirNode>();
         for (int i = 0; i < node.getChildCount(); i++) {
             var childAntlrNode = node.getChild(i);
+
+            if (childAntlrNode instanceof TerminalNode) {
+                continue;
+            }
+
             var childMlirNode = convert(childAntlrNode);
             children.add(childMlirNode);
         }
