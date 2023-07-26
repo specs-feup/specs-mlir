@@ -21,6 +21,7 @@ import org.suikasoft.jOptions.Interfaces.DataStore;
 import org.suikasoft.jOptions.treenode.DataNode;
 
 import pt.up.fe.specs.mlir.ast.context.MlirContext;
+import pt.up.fe.specs.mlir.ast.data.Location;
 
 public class MlirNode extends DataNode<MlirNode> {
 
@@ -36,6 +37,11 @@ public class MlirNode extends DataNode<MlirNode> {
      * Id of the node.
      */
     public final static DataKey<String> NODE_ID = KeyFactory.string("node_id");
+
+    /**
+     * Source code location of this node.
+     */
+    public final static DataKey<Location> LOCATION = KeyFactory.object("location", Location.class);
 
     /// DATAKEYS END
 

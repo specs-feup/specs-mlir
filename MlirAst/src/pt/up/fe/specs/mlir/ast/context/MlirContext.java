@@ -47,4 +47,8 @@ public class MlirContext extends ADataClass<MlirContext> {
         return get(FACTORY);
     }
 
+    public IdGenerator getIdGenerator() {
+        return get(ID_GENERATOR);
+    }
+
 }
