@@ -20,26 +20,6 @@ public interface MlirListener extends ParseTreeListener {
 	 */
 	void exitRoot(MlirParser.RootContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link MlirParser#decimalLiteral}.
-	 * @param ctx the parse tree
-	 */
-	void enterDecimalLiteral(MlirParser.DecimalLiteralContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link MlirParser#decimalLiteral}.
-	 * @param ctx the parse tree
-	 */
-	void exitDecimalLiteral(MlirParser.DecimalLiteralContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link MlirParser#hexadecimalLiteral}.
-	 * @param ctx the parse tree
-	 */
-	void enterHexadecimalLiteral(MlirParser.HexadecimalLiteralContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link MlirParser#hexadecimalLiteral}.
-	 * @param ctx the parse tree
-	 */
-	void exitHexadecimalLiteral(MlirParser.HexadecimalLiteralContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link MlirParser#integerLiteral}.
 	 * @param ctx the parse tree
 	 */
@@ -69,6 +49,36 @@ public interface MlirListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitStringLiteral(MlirParser.StringLiteralContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MlirParser#bareId}.
+	 * @param ctx the parse tree
+	 */
+	void enterBareId(MlirParser.BareIdContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MlirParser#bareId}.
+	 * @param ctx the parse tree
+	 */
+	void exitBareId(MlirParser.BareIdContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MlirParser#bareIdList}.
+	 * @param ctx the parse tree
+	 */
+	void enterBareIdList(MlirParser.BareIdListContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MlirParser#bareIdList}.
+	 * @param ctx the parse tree
+	 */
+	void exitBareIdList(MlirParser.BareIdListContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MlirParser#aliasName}.
+	 * @param ctx the parse tree
+	 */
+	void enterAliasName(MlirParser.AliasNameContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MlirParser#aliasName}.
+	 * @param ctx the parse tree
+	 */
+	void exitAliasName(MlirParser.AliasNameContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link MlirParser#idSsa}.
 	 * @param ctx the parse tree
@@ -310,26 +320,32 @@ public interface MlirListener extends ParseTreeListener {
 	 */
 	void exitOpReturnType(MlirParser.OpReturnTypeContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code GenericOperation}
-	 * labeled alternative in {@link MlirParser#operation}.
+	 * Enter a parse tree produced by {@link MlirParser#operation}.
+	 * @param ctx the parse tree
+	 */
+	void enterOperation(MlirParser.OperationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MlirParser#operation}.
+	 * @param ctx the parse tree
+	 */
+	void exitOperation(MlirParser.OperationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MlirParser#genericOperation}.
 	 * @param ctx the parse tree
 	 */
 	void enterGenericOperation(MlirParser.GenericOperationContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code GenericOperation}
-	 * labeled alternative in {@link MlirParser#operation}.
+	 * Exit a parse tree produced by {@link MlirParser#genericOperation}.
 	 * @param ctx the parse tree
 	 */
 	void exitGenericOperation(MlirParser.GenericOperationContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code CustomOperation}
-	 * labeled alternative in {@link MlirParser#operation}.
+	 * Enter a parse tree produced by {@link MlirParser#customOperation}.
 	 * @param ctx the parse tree
 	 */
 	void enterCustomOperation(MlirParser.CustomOperationContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code CustomOperation}
-	 * labeled alternative in {@link MlirParser#operation}.
+	 * Exit a parse tree produced by {@link MlirParser#customOperation}.
 	 * @param ctx the parse tree
 	 */
 	void exitCustomOperation(MlirParser.CustomOperationContext ctx);

@@ -7,29 +7,59 @@ grammar Mlir;
     package pt.up.fe.specs.mlir.grammar;
 }
 
-DIGIT            : [0-9];
-HEX_DIGIT        : [0-9a-fA-F];
-INTTYPE_WIDTH    : [1-9][0-9]*;
-LETTER           : [a-zA-Z];
-RANKED_DIMENSION : [0-9]'x';
+fragment DIGIT    : [0-9];
+fragment HEX_DIGIT        : [0-9a-fA-F];
+fragment LETTER           : [a-zA-Z];
+fragment ID_PUNCT         : [$._-];
+
+fragment ESCAPED_CHAR: '\\' (["\\/bfnrt"] | 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT);
+
+//ID               : (LETTER | '_')[A-Za-z0-9_.$]*;
+DECIMAL_LITERAL    : DIGIT+;
 FLOAT_PRECISION  : [-+]?[0-9]+[.][0-9]*([eE][-+]?[0-9]+)?;
-ID               : [A-Za-z_][A-Za-z0-9_.]*;
+
+BARE_ID          : (LETTER | [_]) (LETTER | DIGIT | [_$.])*;
+
+INTTYPE_WIDTH    : [1-9][0-9]*;
+
+RANKED_DIMENSION : [0-9]'x';
+
 LOCATION         : '"' [A-Za-z0-9_/]+ '"' ':'[0-9]+':'[0-9]+;
 
+
+
+
+
 WS : [ \t\r\n]+ -> skip ;
+LINE_COMMENT : '//' ~[\r\n]* -> skip ;
+
+
+
+HEX_LITERAL: '0x' HEX_DIGIT+;
+
+STRING_LITERAL: '"' ~('^'|'"'|'\n'|'\f'|'\r')* '"';
 
 // %t_tensor = "toy.transpose"(%tensor) {inplace = true} : (tensor<2x3xf64>) -> tensor<3x2xf64> loc("example/file/path":12:1)
-root : operation;         // match keyword hello followed by an identifier
+root : operation*;  //   attribute-alias-def | type-alias-def      // match keyword hello followed by an identifier
 
 /* literals */
-decimalLiteral     : DIGIT+;
-hexadecimalLiteral : '0x' HEX_DIGIT+;
-integerLiteral     : decimalLiteral | hexadecimalLiteral;
-floatLiteral       : FLOAT_PRECISION;
-stringLiteral      : '"' LETTER+ '"';
+//decimalLiteral     : ;
+//hexadecimalLiteral : ;
+integerLiteral locals[boolean isHexadecimal=false]     :
+    value=DECIMAL_LITERAL | value=HEX_LITERAL {$isHexadecimal = true;};
+
+floatLiteral       : value=FLOAT_PRECISION;
+
+stringLiteral      : value=STRING_LITERAL;
+
+bareId             : value=BARE_ID;
+
+bareIdList         : values+=bareId (',' values+=bareId)*;
+
+aliasName          : bareId;
 
 /* identifiers */
-idSsa : '%' ID;
+idSsa : '%' BARE_ID;
 
 /* dimensions */
 dimensionListRanked : (RANKED_DIMENSION)*;
@@ -66,8 +96,8 @@ operandList     : '(' operand (',' operand)* ')';
 operandTypeList : '(' type (',' type)* ')';
 
 /* attributes */
-attributesProperty : ID;
-attributesValue    : (ID | DIGIT);
+attributesProperty : BARE_ID;
+attributesValue    : DECIMAL_LITERAL ;//(ID | DIGIT);
 attributesEntry    : attributesProperty '=' attributesValue;
 attributes         : '{' attributesEntry (',' attributesEntry)* '}';
 
@@ -80,6 +110,8 @@ opAttributes : attributes;
 opReturnType : type;
 
 operation
-    : opResult? ('"' name = ID+ '"') operandList opAttributes ':' operandTypeList '->' opReturnType trailingLocation? #GenericOperation
-    | opResult? ID trailingLocation? #CustomOperation
-    ;
+    : opResult?  (genericOperation | customOperation) trailingLocation?;
+
+genericOperation: name=STRING_LITERAL /*('"' name = ID+ '"')*/ operandList opAttributes ':' operandTypeList '->' opReturnType;
+
+customOperation: BARE_ID;
