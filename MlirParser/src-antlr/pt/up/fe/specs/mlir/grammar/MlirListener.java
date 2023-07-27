@@ -50,6 +50,16 @@ public interface MlirListener extends ParseTreeListener {
 	 */
 	void exitStringLiteral(MlirParser.StringLiteralContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link MlirParser#booleanLiteral}.
+	 * @param ctx the parse tree
+	 */
+	void enterBooleanLiteral(MlirParser.BooleanLiteralContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MlirParser#booleanLiteral}.
+	 * @param ctx the parse tree
+	 */
+	void exitBooleanLiteral(MlirParser.BooleanLiteralContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link MlirParser#bareIdList}.
 	 * @param ctx the parse tree
 	 */
@@ -109,6 +119,120 @@ public interface MlirListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitValueUseList(MlirParser.ValueUseListContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MlirParser#operation}.
+	 * @param ctx the parse tree
+	 */
+	void enterOperation(MlirParser.OperationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MlirParser#operation}.
+	 * @param ctx the parse tree
+	 */
+	void exitOperation(MlirParser.OperationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MlirParser#genericOperation}.
+	 * @param ctx the parse tree
+	 */
+	void enterGenericOperation(MlirParser.GenericOperationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MlirParser#genericOperation}.
+	 * @param ctx the parse tree
+	 */
+	void exitGenericOperation(MlirParser.GenericOperationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MlirParser#successorList}.
+	 * @param ctx the parse tree
+	 */
+	void enterSuccessorList(MlirParser.SuccessorListContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MlirParser#successorList}.
+	 * @param ctx the parse tree
+	 */
+	void exitSuccessorList(MlirParser.SuccessorListContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MlirParser#successor}.
+	 * @param ctx the parse tree
+	 */
+	void enterSuccessor(MlirParser.SuccessorContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MlirParser#successor}.
+	 * @param ctx the parse tree
+	 */
+	void exitSuccessor(MlirParser.SuccessorContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MlirParser#opResult}.
+	 * @param ctx the parse tree
+	 */
+	void enterOpResult(MlirParser.OpResultContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MlirParser#opResult}.
+	 * @param ctx the parse tree
+	 */
+	void exitOpResult(MlirParser.OpResultContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MlirParser#opResultList}.
+	 * @param ctx the parse tree
+	 */
+	void enterOpResultList(MlirParser.OpResultListContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MlirParser#opResultList}.
+	 * @param ctx the parse tree
+	 */
+	void exitOpResultList(MlirParser.OpResultListContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MlirParser#trailingLocation}.
+	 * @param ctx the parse tree
+	 */
+	void enterTrailingLocation(MlirParser.TrailingLocationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MlirParser#trailingLocation}.
+	 * @param ctx the parse tree
+	 */
+	void exitTrailingLocation(MlirParser.TrailingLocationContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code KnownLocation}
+	 * labeled alternative in {@link MlirParser#location}.
+	 * @param ctx the parse tree
+	 */
+	void enterKnownLocation(MlirParser.KnownLocationContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code KnownLocation}
+	 * labeled alternative in {@link MlirParser#location}.
+	 * @param ctx the parse tree
+	 */
+	void exitKnownLocation(MlirParser.KnownLocationContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code UnknownLocation}
+	 * labeled alternative in {@link MlirParser#location}.
+	 * @param ctx the parse tree
+	 */
+	void enterUnknownLocation(MlirParser.UnknownLocationContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code UnknownLocation}
+	 * labeled alternative in {@link MlirParser#location}.
+	 * @param ctx the parse tree
+	 */
+	void exitUnknownLocation(MlirParser.UnknownLocationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MlirParser#opAttributes}.
+	 * @param ctx the parse tree
+	 */
+	void enterOpAttributes(MlirParser.OpAttributesContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MlirParser#opAttributes}.
+	 * @param ctx the parse tree
+	 */
+	void exitOpAttributes(MlirParser.OpAttributesContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MlirParser#opReturnType}.
+	 * @param ctx the parse tree
+	 */
+	void enterOpReturnType(MlirParser.OpReturnTypeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MlirParser#opReturnType}.
+	 * @param ctx the parse tree
+	 */
+	void exitOpReturnType(MlirParser.OpReturnTypeContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link MlirParser#idSsa}.
 	 * @param ctx the parse tree
@@ -240,6 +364,26 @@ public interface MlirListener extends ParseTreeListener {
 	 */
 	void exitType(MlirParser.TypeContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link MlirParser#functionType}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunctionType(MlirParser.FunctionTypeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MlirParser#functionType}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunctionType(MlirParser.FunctionTypeContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MlirParser#typeListParens}.
+	 * @param ctx the parse tree
+	 */
+	void enterTypeListParens(MlirParser.TypeListParensContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MlirParser#typeListParens}.
+	 * @param ctx the parse tree
+	 */
+	void exitTypeListParens(MlirParser.TypeListParensContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link MlirParser#operand}.
 	 * @param ctx the parse tree
 	 */
@@ -280,16 +424,6 @@ public interface MlirListener extends ParseTreeListener {
 	 */
 	void exitAttributesProperty(MlirParser.AttributesPropertyContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link MlirParser#attributesValue}.
-	 * @param ctx the parse tree
-	 */
-	void enterAttributesValue(MlirParser.AttributesValueContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link MlirParser#attributesValue}.
-	 * @param ctx the parse tree
-	 */
-	void exitAttributesValue(MlirParser.AttributesValueContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link MlirParser#attributesEntry}.
 	 * @param ctx the parse tree
 	 */
@@ -309,74 +443,4 @@ public interface MlirListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitAttributes(MlirParser.AttributesContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link MlirParser#trailingLocation}.
-	 * @param ctx the parse tree
-	 */
-	void enterTrailingLocation(MlirParser.TrailingLocationContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link MlirParser#trailingLocation}.
-	 * @param ctx the parse tree
-	 */
-	void exitTrailingLocation(MlirParser.TrailingLocationContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link MlirParser#opResult}.
-	 * @param ctx the parse tree
-	 */
-	void enterOpResult(MlirParser.OpResultContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link MlirParser#opResult}.
-	 * @param ctx the parse tree
-	 */
-	void exitOpResult(MlirParser.OpResultContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link MlirParser#opAttributes}.
-	 * @param ctx the parse tree
-	 */
-	void enterOpAttributes(MlirParser.OpAttributesContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link MlirParser#opAttributes}.
-	 * @param ctx the parse tree
-	 */
-	void exitOpAttributes(MlirParser.OpAttributesContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link MlirParser#opReturnType}.
-	 * @param ctx the parse tree
-	 */
-	void enterOpReturnType(MlirParser.OpReturnTypeContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link MlirParser#opReturnType}.
-	 * @param ctx the parse tree
-	 */
-	void exitOpReturnType(MlirParser.OpReturnTypeContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link MlirParser#operation}.
-	 * @param ctx the parse tree
-	 */
-	void enterOperation(MlirParser.OperationContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link MlirParser#operation}.
-	 * @param ctx the parse tree
-	 */
-	void exitOperation(MlirParser.OperationContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link MlirParser#genericOperation}.
-	 * @param ctx the parse tree
-	 */
-	void enterGenericOperation(MlirParser.GenericOperationContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link MlirParser#genericOperation}.
-	 * @param ctx the parse tree
-	 */
-	void exitGenericOperation(MlirParser.GenericOperationContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link MlirParser#customOperation}.
-	 * @param ctx the parse tree
-	 */
-	void enterCustomOperation(MlirParser.CustomOperationContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link MlirParser#customOperation}.
-	 * @param ctx the parse tree
-	 */
-	void exitCustomOperation(MlirParser.CustomOperationContext ctx);
 }

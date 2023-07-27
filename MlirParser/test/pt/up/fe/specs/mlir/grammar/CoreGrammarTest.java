@@ -98,5 +98,22 @@ public class CoreGrammarTest {
         Assertions.assertEquals("%01, %_as2#1023", TestUtils.nodesText(node.values));
     }
 
+    @Test
+    public void testLocation() {
+        var node = ((MlirParser.KnownLocationContext) AntlrUtils.parse("\"test/Examples/Toy/Ch2/codegen.toy\":11:11", "location"));
+        Assertions.assertEquals("\"test/Examples/Toy/Ch2/codegen.toy\":11:11", node.file.getText()+":"+node.line.getText()+":"+node.col.getText());
+    }
+
+    @Test
+    public void testTrailingLocation() {
+        var parent = ((MlirParser.TrailingLocationContext) AntlrUtils.parse("loc(\"test/Examples/Toy/Ch2/codegen.toy\":11:11)", "trailingLocation"));
+        var node = (MlirParser.KnownLocationContext)  parent.location();
+        Assertions.assertEquals("\"test/Examples/Toy/Ch2/codegen.toy\":11:11", node.file.getText()+":"+node.line.getText()+":"+node.col.getText());
+    }
+
+    @Test
+    public void testOperation() {
+        var node  = ((MlirParser.OperationContext) AntlrUtils.parse(" %3 = \"toy.reshape\"(%2) : (tensor<6xf64>) -> tensor<2x3xf64> loc(\"test/Examples/Toy/Ch2/codegen.toy\":10:3)", "operation"));
+    }
 
 }

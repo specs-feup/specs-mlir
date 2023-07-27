@@ -32,7 +32,7 @@ INTTYPE_WIDTH    : [1-9][0-9]*;
 
 RANKED_DIMENSION : [0-9]'x';
 
-LOCATION         : '"' [A-Za-z0-9_/]+ '"' ':'[0-9]+':'[0-9]+;
+//LOCATION         : '"' [A-Za-z0-9_/]+ '"' ':'[0-9]+':'[0-9]+;
 
 
 
@@ -50,6 +50,8 @@ STRING_LITERAL: '"' ~('^'|'"'|'\n'|'\f'|'\r')* '"';
 // %t_tensor = "toy.transpose"(%tensor) {inplace = true} : (tensor<2x3xf64>) -> tensor<3x2xf64> loc("example/file/path":12:1)
 root : operation*;  //   attribute-alias-def | type-alias-def      // match keyword hello followed by an identifier
 
+
+
 /* literals */
 //decimalLiteral     : ;
 //hexadecimalLiteral : ;
@@ -59,6 +61,10 @@ integerLiteral locals[boolean isHexadecimal=false]     :
 floatLiteral       : value=FLOAT_PRECISION;
 
 stringLiteral      : value=STRING_LITERAL;
+
+booleanLiteral     : 'true' | 'false';
+
+/// IDENTIFIERS AND KEYWORDS
 
 //bareId             : value=BARE_ID;
 
@@ -76,6 +82,42 @@ valueUse           : value=VALUE_ID ('#' number=DECIMAL_LITERAL)?;
 
 valueUseList       : values+=valueUse (',' values+=valueUse)*;
 
+
+/// OPERATIONS
+
+operation
+    : opResultList?  genericOperation trailingLocation?; // TODO customOperation not supported
+
+genericOperation: name=STRING_LITERAL '(' valueUseList? ')' successorList? /* dictionaryProperties? regionList? dictionaryAttribute? */ ':' functionType;
+
+successorList:  '[' successor (',' successor)* ']';
+
+successor: value=CARET_ID; // (':' blockArgList)? TODO: What is a blockArgList?
+
+//operandList opAttributes ':' operandTypeList '->' opReturnType;
+
+opResult     : value=VALUE_ID (':' integerLiteral)?;
+
+opResultList :  opResult (',' opResult)* '=';
+
+trailingLocation : 'loc' '(' location ')';
+
+location :
+    (file=STRING_LITERAL ':' line=DECIMAL_LITERAL ':' col=DECIMAL_LITERAL) #KnownLocation
+    |'unknown' #UnknownLocation
+    ;
+
+
+
+//customOperation: BARE_ID; // TODO
+
+
+
+opAttributes : attributes;
+
+opReturnType : type;
+
+
 /* identifiers */
 idSsa : '%' BARE_ID;
 
@@ -86,9 +128,9 @@ dimensionListRanked : (RANKED_DIMENSION)*;
 noneType            : 'none';
 indexType           : 'index';
 floatType           : 'f16' | 'bf16' | 'f32' | 'f64';
-signedIntegerType   : 'si' INTTYPE_WIDTH;
-unsignedIntegerType : 'ui' INTTYPE_WIDTH;
-signlessIntegerType : 'i' INTTYPE_WIDTH;
+signedIntegerType   : 'si' width=INTTYPE_WIDTH;
+unsignedIntegerType : 'ui' width=INTTYPE_WIDTH;
+signlessIntegerType : 'i' width=INTTYPE_WIDTH;
 integerType         : signedIntegerType | unsignedIntegerType | signlessIntegerType;
 complexType         : 'complex' '<' type '>';
 tupleType           : 'tuple' '<' type '>';
@@ -108,28 +150,20 @@ type
     | tensorType
     ;
 
+functionType    : (type | typeListParens) '->' (type | typeListParens);
+
+typeListParens  :'(' (type (',' type)*) ')';
+
+
 /* operands */
 operand         : idSsa;
 operandList     : '(' operand (',' operand)* ')';
 operandTypeList : '(' type (',' type)* ')';
 
 /* attributes */
-attributesProperty : BARE_ID;
-attributesValue    : DECIMAL_LITERAL ;//(ID | DIGIT);
-attributesEntry    : attributesProperty '=' attributesValue;
+attributesProperty : value=BARE_ID;
+//attributesValue    : DECIMAL_LITERAL ;//(ID | DIGIT);
+attributesEntry    : attributesProperty '=' (integerLiteral | floatLiteral | stringLiteral | booleanLiteral);
 attributes         : '{' attributesEntry (',' attributesEntry)* '}';
 
-/* source code location */
-trailingLocation : 'loc' '(' LOCATION ')';
 
-/* operations */
-opResult     : idSsa '=';
-opAttributes : attributes;
-opReturnType : type;
-
-operation
-    : opResult?  (genericOperation | customOperation) trailingLocation?;
-
-genericOperation: name=STRING_LITERAL /*('"' name = ID+ '"')*/ operandList opAttributes ':' operandTypeList '->' opReturnType;
-
-customOperation: BARE_ID;
