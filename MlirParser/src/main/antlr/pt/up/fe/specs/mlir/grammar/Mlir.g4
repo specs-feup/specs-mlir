@@ -14,11 +14,19 @@ fragment ID_PUNCT         : [$._-];
 
 fragment ESCAPED_CHAR: '\\' (["\\/bfnrt"] | 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT);
 
+fragment ID_SUFFIX: (DIGIT+ | ((LETTER|ID_PUNCT) (LETTER|ID_PUNCT|DIGIT)*));
+
 //ID               : (LETTER | '_')[A-Za-z0-9_.$]*;
 DECIMAL_LITERAL    : DIGIT+;
 FLOAT_PRECISION  : [-+]?[0-9]+[.][0-9]*([eE][-+]?[0-9]+)?;
 
 BARE_ID          : (LETTER | [_]) (LETTER | DIGIT | [_$.])*;
+
+VALUE_ID        :  '%' ID_SUFFIX;
+
+CARET_ID        :  '^' ID_SUFFIX;
+
+SYMBOL_REF_ELEMENT  : '@' ID_SUFFIX | '@' STRING_LITERAL;
 
 INTTYPE_WIDTH    : [1-9][0-9]*;
 
@@ -52,11 +60,21 @@ floatLiteral       : value=FLOAT_PRECISION;
 
 stringLiteral      : value=STRING_LITERAL;
 
-bareId             : value=BARE_ID;
+//bareId             : value=BARE_ID;
 
-bareIdList         : values+=bareId (',' values+=bareId)*;
+bareIdList         : values+=BARE_ID (',' values+=BARE_ID)*;
 
-aliasName          : bareId;
+//valueId            : value=VALUE_ID;
+
+aliasName          : value=BARE_ID;
+
+symbolRefId        : values+=SYMBOL_REF_ELEMENT ('::' values+=SYMBOL_REF_ELEMENT)*;
+
+valueIdList        : values+=VALUE_ID (',' values+=VALUE_ID)*;
+
+valueUse           : value=VALUE_ID ('#' number=DECIMAL_LITERAL)?;
+
+valueUseList       : values+=valueUse (',' values+=valueUse)*;
 
 /* identifiers */
 idSsa : '%' BARE_ID;

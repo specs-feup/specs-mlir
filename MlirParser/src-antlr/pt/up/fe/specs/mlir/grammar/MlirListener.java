@@ -50,16 +50,6 @@ public interface MlirListener extends ParseTreeListener {
 	 */
 	void exitStringLiteral(MlirParser.StringLiteralContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link MlirParser#bareId}.
-	 * @param ctx the parse tree
-	 */
-	void enterBareId(MlirParser.BareIdContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link MlirParser#bareId}.
-	 * @param ctx the parse tree
-	 */
-	void exitBareId(MlirParser.BareIdContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link MlirParser#bareIdList}.
 	 * @param ctx the parse tree
 	 */
@@ -79,6 +69,46 @@ public interface MlirListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitAliasName(MlirParser.AliasNameContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MlirParser#symbolRefId}.
+	 * @param ctx the parse tree
+	 */
+	void enterSymbolRefId(MlirParser.SymbolRefIdContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MlirParser#symbolRefId}.
+	 * @param ctx the parse tree
+	 */
+	void exitSymbolRefId(MlirParser.SymbolRefIdContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MlirParser#valueIdList}.
+	 * @param ctx the parse tree
+	 */
+	void enterValueIdList(MlirParser.ValueIdListContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MlirParser#valueIdList}.
+	 * @param ctx the parse tree
+	 */
+	void exitValueIdList(MlirParser.ValueIdListContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MlirParser#valueUse}.
+	 * @param ctx the parse tree
+	 */
+	void enterValueUse(MlirParser.ValueUseContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MlirParser#valueUse}.
+	 * @param ctx the parse tree
+	 */
+	void exitValueUse(MlirParser.ValueUseContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MlirParser#valueUseList}.
+	 * @param ctx the parse tree
+	 */
+	void enterValueUseList(MlirParser.ValueUseListContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MlirParser#valueUseList}.
+	 * @param ctx the parse tree
+	 */
+	void exitValueUseList(MlirParser.ValueUseListContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link MlirParser#idSsa}.
 	 * @param ctx the parse tree

@@ -66,18 +66,6 @@ public class MlirBaseListener implements MlirListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterBareId(MlirParser.BareIdContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitBareId(MlirParser.BareIdContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterBareIdList(MlirParser.BareIdListContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -97,6 +85,54 @@ public class MlirBaseListener implements MlirListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitAliasName(MlirParser.AliasNameContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterSymbolRefId(MlirParser.SymbolRefIdContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSymbolRefId(MlirParser.SymbolRefIdContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterValueIdList(MlirParser.ValueIdListContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitValueIdList(MlirParser.ValueIdListContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterValueUse(MlirParser.ValueUseContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitValueUse(MlirParser.ValueUseContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterValueUseList(MlirParser.ValueUseListContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitValueUseList(MlirParser.ValueUseListContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

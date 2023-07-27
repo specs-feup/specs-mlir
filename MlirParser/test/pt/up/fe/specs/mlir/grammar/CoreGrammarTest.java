@@ -13,17 +13,9 @@
 
 package pt.up.fe.specs.mlir.grammar;
 
-import org.antlr.v4.gui.TreeViewer;
-import org.antlr.v4.runtime.ANTLRInputStream;
-import org.antlr.v4.runtime.CommonTokenStream;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import pt.up.fe.specs.mlir.antlr.AntlrUtils;
-
-import javax.swing.*;
-import java.util.Arrays;
-import java.util.concurrent.ExecutionException;
-import java.util.stream.Collectors;
 
 public class CoreGrammarTest {
 
@@ -38,6 +30,7 @@ public class CoreGrammarTest {
         Assertions.assertEquals("0x10230:true", hexLit.value.getText()+":"+hexLit.isHexadecimal);
     }
 
+
     @Test
     public void testFloatingLiteral() {
         var floatLit = ((MlirParser.FloatLiteralContext) AntlrUtils.parse("-10230.034E-230", "floatLiteral"));
@@ -50,21 +43,60 @@ public class CoreGrammarTest {
         Assertions.assertEquals("\"toy.transpose\"", stringLit.value.getText());
     }
 
+    /*
     @Test
     public void testBareId() {
         var node = ((MlirParser.BareIdContext) AntlrUtils.parse("toy.transpose", "bareId"));
         Assertions.assertEquals("toy.transpose", node.value.getText());
     }
+     */
 
     @Test
     public void testBareIdList() {
         var node = ((MlirParser.BareIdListContext) AntlrUtils.parse("toy.transpose, aslkdj, _as23_$.asdas", "bareIdList"));
-        Assertions.assertEquals("toy.transpose, aslkdj, _as23_$.asdas", node.values.stream().map(t -> t.getText()).collect(Collectors.joining(", ")));
+        Assertions.assertEquals("toy.transpose, aslkdj, _as23_$.asdas", TestUtils.tokensText(node.values));
     }
+
+    /*
+    @Test
+    public void testValueId() {
+        var node = ((MlirParser.ValueIdContext) AntlrUtils.parse("%02034203", "valueId"));
+        Assertions.assertEquals("%02034203", node.value.getText());
+    }
+     */
 
     @Test
     public void testAliasName() {
         var node = ((MlirParser.AliasNameContext) AntlrUtils.parse("toy.transpose", "aliasName"));
-        Assertions.assertEquals("toy.transpose", node.bareId().value.getText());
+        Assertions.assertEquals("toy.transpose", node.value.getText());
     }
+
+    @Test
+    public void testSymbolRefId() {
+        var node = ((MlirParser.SymbolRefIdContext) AntlrUtils.parse("@12::@\"foo\"::@30", "symbolRefId"));
+        Assertions.assertEquals("@12, @\"foo\", @30", TestUtils.tokensText(node.values));
+    }
+
+    @Test
+    public void testValueIdList() {
+        var node = ((MlirParser.ValueIdListContext) AntlrUtils.parse("%_20, %00, %-a", "valueIdList"));
+        Assertions.assertEquals("%_20, %00, %-a", TestUtils.tokensText(node.values));
+    }
+
+    @Test
+    public void testValueUse() {
+        var node = ((MlirParser.ValueUseContext) AntlrUtils.parse("%01", "valueUse"));
+        Assertions.assertEquals("%01", node.value.getText());
+
+        node = ((MlirParser.ValueUseContext) AntlrUtils.parse("%_as2#1023", "valueUse"));
+        Assertions.assertEquals("%_as2#1023", node.value.getText() + "#" + node.number.getText());
+    }
+
+    @Test
+    public void testValueUseList() {
+        var node = ((MlirParser.ValueUseListContext) AntlrUtils.parse("%01, %_as2#1023", "valueUseList"));
+        Assertions.assertEquals("%01, %_as2#1023", TestUtils.nodesText(node.values));
+    }
+
+
 }
