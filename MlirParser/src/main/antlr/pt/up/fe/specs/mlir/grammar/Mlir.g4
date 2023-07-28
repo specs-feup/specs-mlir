@@ -20,7 +20,6 @@ fragment ID_SUFFIX: (DIGIT+ | ((LETTER|ID_PUNCT) (LETTER|ID_PUNCT|DIGIT)*));
 DECIMAL_LITERAL    : DIGIT+;
 FLOAT_PRECISION  : [-+]?[0-9]+[.][0-9]*([eE][-+]?[0-9]+)?;
 
-BARE_ID          : (LETTER | [_]) (LETTER | DIGIT | [_$.])*;
 
 VALUE_ID        :  '%' ID_SUFFIX;
 
@@ -28,7 +27,14 @@ CARET_ID        :  '^' ID_SUFFIX;
 
 SYMBOL_REF_ELEMENT  : '@' ID_SUFFIX | '@' STRING_LITERAL;
 
-INTTYPE_WIDTH    : [1-9][0-9]*;
+fragment INTTYPE_WIDTH    : [1-9][0-9]*;
+
+SIGNED_INT_TYPE   : 'si' INTTYPE_WIDTH;
+UNSIGNED_INT_TYPE : 'ui' INTTYPE_WIDTH;
+SIGNLESS_INT_TYPE : 'i' INTTYPE_WIDTH;
+
+BARE_ID          : (LETTER | [_]) (LETTER | DIGIT | [_$.])*;
+
 
 RANKED_DIMENSION : [0-9]'x';
 
@@ -107,19 +113,10 @@ location :
     |'unknown' #UnknownLocation
     ;
 
-
-
 //customOperation: BARE_ID; // TODO
 
-
-
-opAttributes : attributes;
-
-opReturnType : type;
-
-
-/* identifiers */
-idSsa : '%' BARE_ID;
+// Blocks
+valueIdAndType : valueId=VALUE_ID ':' type;
 
 /* dimensions */
 dimensionListRanked : (RANKED_DIMENSION)*;
@@ -128,9 +125,11 @@ dimensionListRanked : (RANKED_DIMENSION)*;
 noneType            : 'none';
 indexType           : 'index';
 floatType           : 'f16' | 'bf16' | 'f32' | 'f64';
-signedIntegerType   : 'si' width=INTTYPE_WIDTH;
-unsignedIntegerType : 'ui' width=INTTYPE_WIDTH;
-signlessIntegerType : 'i' width=INTTYPE_WIDTH;
+signedIntegerType   : value=SIGNED_INT_TYPE;
+unsignedIntegerType : value=UNSIGNED_INT_TYPE;
+signlessIntegerType : value=SIGNLESS_INT_TYPE;
+
+
 integerType         : signedIntegerType | unsignedIntegerType | signlessIntegerType;
 complexType         : 'complex' '<' type '>';
 tupleType           : 'tuple' '<' type '>';
@@ -154,16 +153,8 @@ functionType    : (type | typeListParens) '->' (type | typeListParens);
 
 typeListParens  :'(' (type (',' type)*) ')';
 
-
-/* operands */
-operand         : idSsa;
-operandList     : '(' operand (',' operand)* ')';
-operandTypeList : '(' type (',' type)* ')';
-
 /* attributes */
 attributesProperty : value=BARE_ID;
 //attributesValue    : DECIMAL_LITERAL ;//(ID | DIGIT);
 attributesEntry    : attributesProperty '=' (integerLiteral | floatLiteral | stringLiteral | booleanLiteral);
 attributes         : '{' attributesEntry (',' attributesEntry)* '}';
-
-

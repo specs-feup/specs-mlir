@@ -116,4 +116,28 @@ public class CoreGrammarTest {
         var node  = ((MlirParser.OperationContext) AntlrUtils.parse(" %3 = \"toy.reshape\"(%2) : (tensor<6xf64>) -> tensor<2x3xf64> loc(\"test/Examples/Toy/Ch2/codegen.toy\":10:3)", "operation"));
     }
 
+    @Test
+    public void testIntegerType() {
+        var signedIntegerNode = ((MlirParser.SignedIntegerTypeContext) AntlrUtils.parse("si64", "signedIntegerType"));
+        var unsignedIntegerNode = ((MlirParser.UnsignedIntegerTypeContext) AntlrUtils.parse("ui64", "unsignedIntegerType"));
+        var signlessIntegerNode = ((MlirParser.SignlessIntegerTypeContext) AntlrUtils.parse("i64", "signlessIntegerType"));
+
+        String signedWidth = signedIntegerNode.value.getText();
+        String unsignedWidth = unsignedIntegerNode.value.getText();
+        String signlessWidth = signlessIntegerNode.value.getText();
+
+        Assertions.assertEquals(signedWidth, "si64");
+        Assertions.assertEquals(unsignedWidth, "ui64");
+        Assertions.assertEquals(signlessWidth, "i64");
+    }
+
+    @Test
+    public void testValueIdAndType() {
+        // TODO: fix this test
+        var node = ((MlirParser.ValueIdAndTypeContext) AntlrUtils.parse("%a: i64", "valueIdAndType"));
+
+        Assertions.assertEquals("%a", node.valueId.getText());
+        //Assertions.assertEquals("i64", node.valueType.getText());
+    }
+
 }

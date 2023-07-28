@@ -1,4 +1,4 @@
-// Generated from pt\u005Cup\fe\specs\mlir\grammar\Mlir.g4 by ANTLR 4.5.3
+// Generated from pt/up/fe/specs/mlir/grammar/Mlir.g4 by ANTLR 4.5.3
 
     package pt.up.fe.specs.mlir.grammar;
 
@@ -258,37 +258,13 @@ public class MlirBaseListener implements MlirListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterOpAttributes(MlirParser.OpAttributesContext ctx) { }
+	@Override public void enterValueIdAndType(MlirParser.ValueIdAndTypeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitOpAttributes(MlirParser.OpAttributesContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterOpReturnType(MlirParser.OpReturnTypeContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitOpReturnType(MlirParser.OpReturnTypeContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterIdSsa(MlirParser.IdSsaContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitIdSsa(MlirParser.IdSsaContext ctx) { }
+	@Override public void exitValueIdAndType(MlirParser.ValueIdAndTypeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -457,42 +433,6 @@ public class MlirBaseListener implements MlirListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitTypeListParens(MlirParser.TypeListParensContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterOperand(MlirParser.OperandContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitOperand(MlirParser.OperandContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterOperandList(MlirParser.OperandListContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitOperandList(MlirParser.OperandListContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterOperandTypeList(MlirParser.OperandTypeListContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitOperandTypeList(MlirParser.OperandTypeListContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
