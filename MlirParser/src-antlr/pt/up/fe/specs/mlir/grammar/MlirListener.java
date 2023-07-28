@@ -224,6 +224,46 @@ public interface MlirListener extends ParseTreeListener {
 	 */
 	void exitValueIdAndType(MlirParser.ValueIdAndTypeContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link MlirParser#valueIdAndTypeList}.
+	 * @param ctx the parse tree
+	 */
+	void enterValueIdAndTypeList(MlirParser.ValueIdAndTypeListContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MlirParser#valueIdAndTypeList}.
+	 * @param ctx the parse tree
+	 */
+	void exitValueIdAndTypeList(MlirParser.ValueIdAndTypeListContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MlirParser#blockArgList}.
+	 * @param ctx the parse tree
+	 */
+	void enterBlockArgList(MlirParser.BlockArgListContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MlirParser#blockArgList}.
+	 * @param ctx the parse tree
+	 */
+	void exitBlockArgList(MlirParser.BlockArgListContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MlirParser#blockLabel}.
+	 * @param ctx the parse tree
+	 */
+	void enterBlockLabel(MlirParser.BlockLabelContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MlirParser#blockLabel}.
+	 * @param ctx the parse tree
+	 */
+	void exitBlockLabel(MlirParser.BlockLabelContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MlirParser#block}.
+	 * @param ctx the parse tree
+	 */
+	void enterBlock(MlirParser.BlockContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MlirParser#block}.
+	 * @param ctx the parse tree
+	 */
+	void exitBlock(MlirParser.BlockContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link MlirParser#dimensionListRanked}.
 	 * @param ctx the parse tree
 	 */

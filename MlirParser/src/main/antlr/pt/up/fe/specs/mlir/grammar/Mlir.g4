@@ -116,7 +116,12 @@ location :
 //customOperation: BARE_ID; // TODO
 
 // Blocks
-valueIdAndType : valueId=VALUE_ID ':' type;
+valueIdAndType     : valueId=VALUE_ID ':' valueType=type;
+valueIdAndTypeList : values+=valueIdAndType (',' values+=valueIdAndType)* ;
+blockArgList       : '(' args=valueIdAndTypeList? ')';
+blockLabel         : blockId=CARET_ID blockArgList? ':';
+block              : blockLabel operation+;
+
 
 /* dimensions */
 dimensionListRanked : (RANKED_DIMENSION)*;
