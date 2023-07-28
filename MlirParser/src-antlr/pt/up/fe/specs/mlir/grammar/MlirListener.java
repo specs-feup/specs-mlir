@@ -120,6 +120,66 @@ public interface MlirListener extends ParseTreeListener {
 	 */
 	void exitValueUseList(MlirParser.ValueUseListContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link MlirParser#dictionaryProperties}.
+	 * @param ctx the parse tree
+	 */
+	void enterDictionaryProperties(MlirParser.DictionaryPropertiesContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MlirParser#dictionaryProperties}.
+	 * @param ctx the parse tree
+	 */
+	void exitDictionaryProperties(MlirParser.DictionaryPropertiesContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MlirParser#dictionaryAttribute}.
+	 * @param ctx the parse tree
+	 */
+	void enterDictionaryAttribute(MlirParser.DictionaryAttributeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MlirParser#dictionaryAttribute}.
+	 * @param ctx the parse tree
+	 */
+	void exitDictionaryAttribute(MlirParser.DictionaryAttributeContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MlirParser#attributesEntry}.
+	 * @param ctx the parse tree
+	 */
+	void enterAttributesEntry(MlirParser.AttributesEntryContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MlirParser#attributesEntry}.
+	 * @param ctx the parse tree
+	 */
+	void exitAttributesEntry(MlirParser.AttributesEntryContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MlirParser#attributesProperty}.
+	 * @param ctx the parse tree
+	 */
+	void enterAttributesProperty(MlirParser.AttributesPropertyContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MlirParser#attributesProperty}.
+	 * @param ctx the parse tree
+	 */
+	void exitAttributesProperty(MlirParser.AttributesPropertyContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MlirParser#region}.
+	 * @param ctx the parse tree
+	 */
+	void enterRegion(MlirParser.RegionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MlirParser#region}.
+	 * @param ctx the parse tree
+	 */
+	void exitRegion(MlirParser.RegionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MlirParser#regionList}.
+	 * @param ctx the parse tree
+	 */
+	void enterRegionList(MlirParser.RegionListContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MlirParser#regionList}.
+	 * @param ctx the parse tree
+	 */
+	void exitRegionList(MlirParser.RegionListContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link MlirParser#operation}.
 	 * @param ctx the parse tree
 	 */
@@ -403,34 +463,4 @@ public interface MlirListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitTypeListParens(MlirParser.TypeListParensContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link MlirParser#attributesProperty}.
-	 * @param ctx the parse tree
-	 */
-	void enterAttributesProperty(MlirParser.AttributesPropertyContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link MlirParser#attributesProperty}.
-	 * @param ctx the parse tree
-	 */
-	void exitAttributesProperty(MlirParser.AttributesPropertyContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link MlirParser#attributesEntry}.
-	 * @param ctx the parse tree
-	 */
-	void enterAttributesEntry(MlirParser.AttributesEntryContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link MlirParser#attributesEntry}.
-	 * @param ctx the parse tree
-	 */
-	void exitAttributesEntry(MlirParser.AttributesEntryContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link MlirParser#attributes}.
-	 * @param ctx the parse tree
-	 */
-	void enterAttributes(MlirParser.AttributesContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link MlirParser#attributes}.
-	 * @param ctx the parse tree
-	 */
-	void exitAttributes(MlirParser.AttributesContext ctx);
 }

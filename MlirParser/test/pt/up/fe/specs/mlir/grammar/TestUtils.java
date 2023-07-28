@@ -15,4 +15,12 @@ public class TestUtils {
     public static String tokensText(Collection<? extends Token> nodes) {
         return nodes.stream().map(t -> t.getText()).collect(Collectors.joining(", "));
     }
+
+    public static String attributeProperty(MlirParser.AttributesEntryContext context) {
+        return context.attributesProperty().value.getText();
+    }
+
+    public static String attributeValue(MlirParser.AttributesEntryContext context) {
+        return context.children.get(2).getText();
+    }
 }

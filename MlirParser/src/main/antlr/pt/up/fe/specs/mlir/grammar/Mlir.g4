@@ -46,20 +46,31 @@ booleanLiteral : 'true' | 'false';
 
 /// IDENTIFIERS AND KEYWORDS
 
-//bareId             : value=BARE_ID;
 bareIdList   : values+=BARE_ID (',' values+=BARE_ID)*;
-//valueId            : value=VALUE_ID;
 aliasName    : value=BARE_ID;
 symbolRefId  : values+=SYMBOL_REF_ELEMENT ('::' values+=SYMBOL_REF_ELEMENT)*;
 valueIdList  : values+=VALUE_ID (',' values+=VALUE_ID)*;
 valueUse     : value=VALUE_ID ('#' number=DECIMAL_LITERAL)?;
 valueUseList : values+=valueUse (',' values+=valueUse)*;
 
+/// DICTIONARIES & ATTRIBUTES
+
+dictionaryProperties : '<' dictionaryAttribute '>';
+dictionaryAttribute  : '{' (attributesEntry (',' attributesEntry)*)? '}';
+attributesEntry      : attributesProperty '=' (integerLiteral | floatLiteral | stringLiteral | booleanLiteral);
+attributesProperty   : value=BARE_ID;
+
+/// REGIONS
+region : '{' operation+ block* '}';
+regionList : '(' region (',' region)* ')';
+
 /// OPERATIONS
 
 operation : opResultList?  genericOperation trailingLocation?; // TODO customOperation not supported
 
-genericOperation : name=STRING_LITERAL '(' valueUseList? ')' successorList? /* dictionaryProperties? regionList? dictionaryAttribute? */ ':' functionType;
+genericOperation
+    : name=STRING_LITERAL '(' valueUseList? ')' successorList? dictionaryProperties? regionList? dictionaryAttribute? ':' functionType;
+
 successorList    :  '[' successor (',' successor)* ']';
 successor        : value=CARET_ID;
 opResult         : value=VALUE_ID (':' integerLiteral)?;
@@ -113,8 +124,3 @@ functionType   : (type | typeListParens) '->' (type | typeListParens);
 
 typeListParens :'(' (type (',' type)*) ')';
 
-/* attributes */
-attributesProperty : value=BARE_ID;
-//attributesValue    : DECIMAL_LITERAL ;//(ID | DIGIT);
-attributesEntry    : attributesProperty '=' (integerLiteral | floatLiteral | stringLiteral | booleanLiteral);
-attributes         : '{' attributesEntry (',' attributesEntry)* '}';

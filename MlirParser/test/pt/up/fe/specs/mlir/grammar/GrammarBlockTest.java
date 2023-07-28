@@ -61,7 +61,6 @@ public class GrammarBlockTest {
 
     @Test
     public void testBlock() {
-        // TODO: is it supposed to ignore every whitespace?
         String code = """
                 ^bb0(%a: i64, %cond: i1): // Code dominated by ^bb0 may refer to %a
                    %3 = "toy.reshape"(%2) : (tensor<6xf64>) -> tensor<2x3xf64> loc("test/Examples/Toy/Ch2/codegen.toy":10:3)
