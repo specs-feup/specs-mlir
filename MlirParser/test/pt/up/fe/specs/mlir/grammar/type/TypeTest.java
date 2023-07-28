@@ -50,6 +50,47 @@ public class TypeTest {
     }
 
     @Test
+    public void testFunctionTypeNoArgsNoReturn() {
+        var node = ((MlirParser.FloatTypeContext) AntlrUtils.parse("() -> ()", "functionType"));
+
+    }
+
+    @Test
+    public void testFunctionTypeNoArgsSingleReturn() {
+        var node = ((MlirParser.FloatTypeContext) AntlrUtils.parse("() -> f32", "functionType"));
+    }
+
+    @Test
+    public void testFunctionTypeNoArgsListReturn() {
+        var node = ((MlirParser.FloatTypeContext) AntlrUtils.parse("() -> (f32, i32)", "functionType"));
+    }
+
+    @Test
+    public void testFunctionTypeSingleArgSingleReturn() {
+        var node = ((MlirParser.FloatTypeContext) AntlrUtils.parse("f32 -> f32", "functionType"));
+    }
+
+    @Test
+    public void testFunctionTypeSingleArgListReturn() {
+        var node = ((MlirParser.FloatTypeContext) AntlrUtils.parse("f32 -> (f32, i32)", "functionType"));
+    }
+
+    @Test
+    public void testFunctionTypeListArgsNoReturn() {
+        var node = ((MlirParser.FloatTypeContext) AntlrUtils.parse("(f32, i32) -> ()", "functionType"));
+    }
+
+    @Test
+    public void testFunctionTypeListArgsSingleReturn() {
+        var node = ((MlirParser.FloatTypeContext) AntlrUtils.parse("(f32, i32) -> f32", "functionType"));
+    }
+
+    @Test
+    public void testFunctionTypeListArgsListReturn() {
+        var node = ((MlirParser.FloatTypeContext) AntlrUtils.parse("(f32, i32) -> (f32, i32)", "functionType"));
+    }
+
+    @Test
     public void testComplexType() {
         // TODO: add tests for 'complex' type
     }
@@ -59,4 +100,8 @@ public class TypeTest {
         // TODO: add tests for 'tuple' type
     }
 
+    @Test
+    public void testTensorType() {
+        // TODO: add tests for 'tensor' type
+    }
 }

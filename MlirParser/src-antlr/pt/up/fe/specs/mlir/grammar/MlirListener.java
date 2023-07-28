@@ -424,26 +424,6 @@ public interface MlirListener extends ParseTreeListener {
 	 */
 	void exitTupleType(MlirParser.TupleTypeContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link MlirParser#tensorType}.
-	 * @param ctx the parse tree
-	 */
-	void enterTensorType(MlirParser.TensorTypeContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link MlirParser#tensorType}.
-	 * @param ctx the parse tree
-	 */
-	void exitTensorType(MlirParser.TensorTypeContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link MlirParser#type}.
-	 * @param ctx the parse tree
-	 */
-	void enterType(MlirParser.TypeContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link MlirParser#type}.
-	 * @param ctx the parse tree
-	 */
-	void exitType(MlirParser.TypeContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link MlirParser#functionType}.
 	 * @param ctx the parse tree
 	 */
@@ -463,4 +443,24 @@ public interface MlirListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitTypeListParens(MlirParser.TypeListParensContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MlirParser#tensorType}.
+	 * @param ctx the parse tree
+	 */
+	void enterTensorType(MlirParser.TensorTypeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MlirParser#tensorType}.
+	 * @param ctx the parse tree
+	 */
+	void exitTensorType(MlirParser.TensorTypeContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MlirParser#type}.
+	 * @param ctx the parse tree
+	 */
+	void enterType(MlirParser.TypeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MlirParser#type}.
+	 * @param ctx the parse tree
+	 */
+	void exitType(MlirParser.TypeContext ctx);
 }

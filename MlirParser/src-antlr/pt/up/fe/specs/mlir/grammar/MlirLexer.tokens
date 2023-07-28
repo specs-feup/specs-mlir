@@ -64,5 +64,5 @@ STRING_LITERAL=41
 'f64'=23
 'complex'=24
 'tuple'=25
-'tensor'=26
-'->'=27
+'->'=26
+'tensor'=27

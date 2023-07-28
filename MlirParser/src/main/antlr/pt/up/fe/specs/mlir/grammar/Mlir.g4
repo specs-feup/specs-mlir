@@ -54,7 +54,7 @@ valueUse     : value=VALUE_ID ('#' number=DECIMAL_LITERAL)?;
 valueUseList : values+=valueUse (',' values+=valueUse)*;
 
 /// DICTIONARIES & ATTRIBUTES
-
+// TODO: add some of the builtin-attributes (e.g., IntegerAttr)
 dictionaryProperties : '<' dictionaryAttribute '>';
 dictionaryAttribute  : '{' (attributesEntry (',' attributesEntry)*)? '}';
 attributesEntry      : attributesProperty '=' (integerLiteral | floatLiteral | stringLiteral | booleanLiteral);
@@ -65,7 +65,7 @@ region : '{' operation+ block* '}';
 regionList : '(' region (',' region)* ')';
 
 /// OPERATIONS
-
+// TODO: fix opResult in order to support inputs like '%result:2'
 operation : opResultList?  genericOperation trailingLocation?; // TODO customOperation not supported
 
 genericOperation
@@ -107,6 +107,9 @@ integerType         : signedIntegerType | unsignedIntegerType | signlessIntegerT
 complexType         : 'complex' '<' type '>';
 tupleType           : 'tuple' '<' type '>';
 
+functionType   : (type | typeListParens) '->' (type | typeListParens);
+typeListParens :'(' (type (',' type)*) ')';
+
 tensorType : 'tensor' '<' dimensionListRanked floatType '>';
 
 // TODO: Add more types
@@ -119,8 +122,3 @@ type
     | tupleType
     | tensorType
     ;
-
-functionType   : (type | typeListParens) '->' (type | typeListParens);
-
-typeListParens :'(' (type (',' type)*) ')';
-
