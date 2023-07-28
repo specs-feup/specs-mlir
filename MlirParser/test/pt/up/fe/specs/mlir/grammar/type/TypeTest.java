@@ -1,10 +1,11 @@
-package pt.up.fe.specs.mlir.grammar;
+package pt.up.fe.specs.mlir.grammar.type;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import pt.up.fe.specs.mlir.antlr.AntlrUtils;
+import pt.up.fe.specs.mlir.grammar.MlirParser;
 
-public class GrammarTypeTest {
+public class TypeTest {
 
     @Test
     public void testNoneType() {

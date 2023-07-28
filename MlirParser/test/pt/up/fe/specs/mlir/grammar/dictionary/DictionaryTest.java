@@ -1,10 +1,12 @@
-package pt.up.fe.specs.mlir.grammar;
+package pt.up.fe.specs.mlir.grammar.dictionary;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import pt.up.fe.specs.mlir.antlr.AntlrUtils;
+import pt.up.fe.specs.mlir.grammar.MlirParser;
+import pt.up.fe.specs.mlir.grammar.TestUtils;
 
-public class GrammarDictionaryTest {
+public class DictionaryTest {
     @Test
     public void testAttributeEntry() {
         var node = ((MlirParser.AttributesEntryContext) AntlrUtils.parse("fruit = \"banana\"", "attributesEntry"));

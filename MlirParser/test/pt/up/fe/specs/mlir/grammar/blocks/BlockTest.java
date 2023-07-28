@@ -1,10 +1,11 @@
-package pt.up.fe.specs.mlir.grammar;
+package pt.up.fe.specs.mlir.grammar.blocks;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import pt.up.fe.specs.mlir.antlr.AntlrUtils;
+import pt.up.fe.specs.mlir.grammar.MlirParser;
 
-public class GrammarBlockTest {
+public class BlockTest {
 
     @Test
     public void testValueIdAndType() {
