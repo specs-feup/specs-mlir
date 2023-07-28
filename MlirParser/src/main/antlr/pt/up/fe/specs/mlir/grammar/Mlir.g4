@@ -74,34 +74,30 @@ location
 
 //customOperation: BARE_ID; // TODO
 
-// Blocks
+/// BLOCKS
 valueIdAndType     : valueId=VALUE_ID ':' valueType=type;
 valueIdAndTypeList : values+=valueIdAndType (',' values+=valueIdAndType)* ;
 blockArgList       : '(' args=valueIdAndTypeList? ')';
 blockLabel         : blockId=CARET_ID blockArgList? ':';
 block              : blockLabel operation+;
 
-
-/* dimensions */
+/// DIMENSIONS
 dimensionListRanked : (RANKED_DIMENSION)*;
 
-/* simple types */
-noneType            : 'none';
-indexType           : 'index';
-floatType           : 'f16' | 'bf16' | 'f32' | 'f64';
+/// TYPES
+noneType            : value='none';
+indexType           : value='index';
+floatType           : value=('f16' | 'bf16' | 'f32' | 'f64');
 signedIntegerType   : value=SIGNED_INT_TYPE;
 unsignedIntegerType : value=UNSIGNED_INT_TYPE;
 signlessIntegerType : value=SIGNLESS_INT_TYPE;
-
 
 integerType         : signedIntegerType | unsignedIntegerType | signlessIntegerType;
 complexType         : 'complex' '<' type '>';
 tupleType           : 'tuple' '<' type '>';
 
-/* tensor type */
 tensorType : 'tensor' '<' dimensionListRanked floatType '>';
 
-/* final type declaration */
 // TODO: Add more types
 type
     : noneType

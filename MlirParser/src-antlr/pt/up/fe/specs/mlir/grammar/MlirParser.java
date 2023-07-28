@@ -1493,6 +1493,7 @@ public class MlirParser extends Parser {
 	}
 
 	public static class NoneTypeContext extends ParserRuleContext {
+		public Token value;
 		public NoneTypeContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -1514,7 +1515,7 @@ public class MlirParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(234);
-			match(T__13);
+			((NoneTypeContext)_localctx).value = match(T__13);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1529,6 +1530,7 @@ public class MlirParser extends Parser {
 	}
 
 	public static class IndexTypeContext extends ParserRuleContext {
+		public Token value;
 		public IndexTypeContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -1550,7 +1552,7 @@ public class MlirParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(236);
-			match(T__14);
+			((IndexTypeContext)_localctx).value = match(T__14);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1565,6 +1567,7 @@ public class MlirParser extends Parser {
 	}
 
 	public static class FloatTypeContext extends ParserRuleContext {
+		public Token value;
 		public FloatTypeContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -1587,9 +1590,10 @@ public class MlirParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(238);
+			((FloatTypeContext)_localctx).value = _input.LT(1);
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__15) | (1L << T__16) | (1L << T__17) | (1L << T__18))) != 0)) ) {
-			_errHandler.recoverInline(this);
+				((FloatTypeContext)_localctx).value = (Token)_errHandler.recoverInline(this);
 			} else {
 				consume();
 			}
