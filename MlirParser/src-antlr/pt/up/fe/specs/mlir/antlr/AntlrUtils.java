@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -27,6 +28,10 @@ public class AntlrUtils {
 
         // Wrap lexer around a token stream
         var tokens = new CommonTokenStream(lex);
+
+        tokens.fill();
+
+        System.out.println("TOKENS: " + tokens.getTokens().stream().map(t -> lex.getRuleNames()[t.getTokenIndex()]).collect(Collectors.toList()));
 
         // Transforms tokens into a parse tree
         var parser = new MlirParser(tokens);

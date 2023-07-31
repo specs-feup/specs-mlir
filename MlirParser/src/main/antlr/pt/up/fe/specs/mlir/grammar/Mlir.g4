@@ -7,12 +7,18 @@ grammar Mlir;
     package pt.up.fe.specs.mlir.grammar;
 }
 
-fragment DIGIT     : [0-9];
-fragment HEX_DIGIT : [0-9a-fA-F];
-fragment LETTER    : [a-zA-Z];
-fragment ID_PUNCT  : [$._-];
+
+RANKED_DIMENSION   : (DIGIT | '?')'x';
+UNRANKED_DIMENSION : '*x' ;
+//DIMENSION_SEPARATOR : 'x' ;
+
+fragment DIGIT        : [0-9];
+fragment HEX_DIGIT    : [0-9a-fA-F];
+fragment LETTER       : [a-zA-Z];
+fragment ID_PUNCT     : [$._-];
 fragment ESCAPED_CHAR : '\\' (["\\/bfnrt"] | 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT);
-fragment ID_SUFFIX : (DIGIT+ | ((LETTER|ID_PUNCT) (LETTER|ID_PUNCT|DIGIT)*));
+fragment ID_SUFFIX    : (DIGIT+ | ((LETTER|ID_PUNCT) (LETTER|ID_PUNCT|DIGIT)*));
+fragment DIMENSION    : DIGIT | '?';
 
 DECIMAL_LITERAL : DIGIT+;
 FLOAT_PRECISION : [-+]?[0-9]+[.][0-9]*([eE][-+]?[0-9]+)?;
@@ -28,8 +34,7 @@ SIGNLESS_INT_TYPE : 'i' INTTYPE_WIDTH;
 
 BARE_ID : (LETTER | [_]) (LETTER | DIGIT | [_$.])*;
 
-RANKED_DIMENSION   : ([0-9] | '?')'x';
-UNRANKED_DIMENSION : '*x' ;
+
 
 WS : [ \t\r\n]+ -> skip ;
 LINE_COMMENT : '//' ~[\r\n]* -> skip ;
@@ -39,6 +44,7 @@ STRING_LITERAL : '"' ~('^'|'"'|'\n'|'\f'|'\r')* '"';
 
 root : operation*;  //   attribute-alias-def | type-alias-def      // match keyword hello followed by an identifier
 
+decimalLiteral : value=DECIMAL_LITERAL;
 integerLiteral locals[boolean isHexadecimal=false]
                : value=DECIMAL_LITERAL | value=HEX_LITERAL {$isHexadecimal = true;};
 floatLiteral   : value=FLOAT_PRECISION;
@@ -62,7 +68,7 @@ attributesEntry      : attributesProperty '=' (integerLiteral | floatLiteral | s
 attributesProperty   : value=BARE_ID;
 
 /// REGIONS
-region : '{' operation+ block* '}';
+region     : '{' operation+ block* '}';
 regionList : '(' region (',' region)* ')';
 
 /// OPERATIONS
@@ -72,10 +78,10 @@ operation : opResultList?  genericOperation trailingLocation?; // TODO customOpe
 genericOperation
     : name=STRING_LITERAL '(' valueUseList? ')' successorList? dictionaryProperties? regionList? dictionaryAttribute? ':' functionType;
 
-successorList    : '[' successor (',' successor)* ']';
-successor        : value=CARET_ID;
-opResult         : value=VALUE_ID (':' integerLiteral)?;
-opResultList     : opResult (',' opResult)* '=';
+successorList : '[' successor (',' successor)* ']';
+successor     : value=CARET_ID;
+opResult      : value=VALUE_ID (':' integerLiteral)?;
+opResultList  : opResult (',' opResult)* '=';
 
 trailingLocation : 'loc' '(' location ')';
 
@@ -94,8 +100,10 @@ blockLabel         : blockId=CARET_ID blockArgList? ':';
 block              : blockLabel operation+;
 
 /// DIMENSIONS
-dimensionListRanked   : (RANKED_DIMENSION)*;
-dimensionListUnranked : UNRANKED_DIMENSION ;
+dimension             : decimalLiteral | '?' ;
+//dimensionListRanked   : (dimension DIMENSION_SEPARATOR)*;
+dimensionListRanked   : value+=RANKED_DIMENSION*;
+dimensionListUnranked : value=UNRANKED_DIMENSION ;
 
 /// TYPES
 noneType            : value='none';
@@ -104,7 +112,6 @@ floatType           : value=('f16' | 'bf16' | 'f32' | 'f64');
 signedIntegerType   : value=SIGNED_INT_TYPE;
 unsignedIntegerType : value=UNSIGNED_INT_TYPE;
 signlessIntegerType : value=SIGNLESS_INT_TYPE;
-
 integerType         : signedIntegerType | unsignedIntegerType | signlessIntegerType;
 complexType         : 'complex' '<' type '>';
 tupleType           : 'tuple' '<' type '>';
@@ -112,10 +119,15 @@ tupleType           : 'tuple' '<' type '>';
 functionType   : (type | typeListParens) '->' (type | typeListParens);
 typeListParens : '(' ')' | '(' (values+=type (',' values+=type)*) ')';
 
-tensorElementType  : floatType | integerType ;
-unrankedTensorType : 'tensor' '<' dimensionListUnranked tensorElementType '>';
-rankedTensorType   : 'tensor' '<' dimensionListRanked tensorElementType '>' ;
-tensorType         : unrankedTensorType | rankedTensorType;
+// tensor
+tensorMemrefElementType  : floatType | integerType ;
+unrankedTensorType       : 'tensor' '<' dimensionListUnranked tensorMemrefElementType '>';
+rankedTensorType         : 'tensor' '<' dimensionListRanked tensorMemrefElementType '>' ;
+tensorType               : unrankedTensorType | rankedTensorType;
+
+// memref
+strideList    : '[' (dimension (',' dimension)*)? ']';
+stridedLayout : 'offset:' dimension ',' 'strides:' strideList;
 
 // TODO: Add more types
 type

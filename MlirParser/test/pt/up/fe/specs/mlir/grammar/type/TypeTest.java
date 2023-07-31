@@ -142,4 +142,14 @@ public class TypeTest {
         Assertions.assertEquals(TypeUtils.elemtype(n1), "f32");
         Assertions.assertEquals(TypeUtils.elemtype(n2), "ui32");
     }
+
+    @Test
+    public void testUnrankedMemrefType() {
+
+    }
+
+    @Test
+    public void testRankedMemrefType() {
+
+    }
 }

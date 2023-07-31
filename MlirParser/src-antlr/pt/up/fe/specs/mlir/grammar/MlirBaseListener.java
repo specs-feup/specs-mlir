@@ -30,6 +30,18 @@ public class MlirBaseListener implements MlirListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterDecimalLiteral(MlirParser.DecimalLiteralContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitDecimalLiteral(MlirParser.DecimalLiteralContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterIntegerLiteral(MlirParser.IntegerLiteralContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -390,6 +402,18 @@ public class MlirBaseListener implements MlirListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterDimension(MlirParser.DimensionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitDimension(MlirParser.DimensionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterDimensionListRanked(MlirParser.DimensionListRankedContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -546,13 +570,13 @@ public class MlirBaseListener implements MlirListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterTensorElementType(MlirParser.TensorElementTypeContext ctx) { }
+	@Override public void enterTensorMemrefElementType(MlirParser.TensorMemrefElementTypeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitTensorElementType(MlirParser.TensorElementTypeContext ctx) { }
+	@Override public void exitTensorMemrefElementType(MlirParser.TensorMemrefElementTypeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -589,6 +613,30 @@ public class MlirBaseListener implements MlirListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitTensorType(MlirParser.TensorTypeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterStrideList(MlirParser.StrideListContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitStrideList(MlirParser.StrideListContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterStridedLayout(MlirParser.StridedLayoutContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitStridedLayout(MlirParser.StridedLayoutContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

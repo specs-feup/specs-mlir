@@ -20,6 +20,16 @@ public interface MlirListener extends ParseTreeListener {
 	 */
 	void exitRoot(MlirParser.RootContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link MlirParser#decimalLiteral}.
+	 * @param ctx the parse tree
+	 */
+	void enterDecimalLiteral(MlirParser.DecimalLiteralContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MlirParser#decimalLiteral}.
+	 * @param ctx the parse tree
+	 */
+	void exitDecimalLiteral(MlirParser.DecimalLiteralContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link MlirParser#integerLiteral}.
 	 * @param ctx the parse tree
 	 */
@@ -324,6 +334,16 @@ public interface MlirListener extends ParseTreeListener {
 	 */
 	void exitBlock(MlirParser.BlockContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link MlirParser#dimension}.
+	 * @param ctx the parse tree
+	 */
+	void enterDimension(MlirParser.DimensionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MlirParser#dimension}.
+	 * @param ctx the parse tree
+	 */
+	void exitDimension(MlirParser.DimensionContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link MlirParser#dimensionListRanked}.
 	 * @param ctx the parse tree
 	 */
@@ -454,15 +474,15 @@ public interface MlirListener extends ParseTreeListener {
 	 */
 	void exitTypeListParens(MlirParser.TypeListParensContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link MlirParser#tensorElementType}.
+	 * Enter a parse tree produced by {@link MlirParser#tensorMemrefElementType}.
 	 * @param ctx the parse tree
 	 */
-	void enterTensorElementType(MlirParser.TensorElementTypeContext ctx);
+	void enterTensorMemrefElementType(MlirParser.TensorMemrefElementTypeContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link MlirParser#tensorElementType}.
+	 * Exit a parse tree produced by {@link MlirParser#tensorMemrefElementType}.
 	 * @param ctx the parse tree
 	 */
-	void exitTensorElementType(MlirParser.TensorElementTypeContext ctx);
+	void exitTensorMemrefElementType(MlirParser.TensorMemrefElementTypeContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link MlirParser#unrankedTensorType}.
 	 * @param ctx the parse tree
@@ -493,6 +513,26 @@ public interface MlirListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitTensorType(MlirParser.TensorTypeContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MlirParser#strideList}.
+	 * @param ctx the parse tree
+	 */
+	void enterStrideList(MlirParser.StrideListContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MlirParser#strideList}.
+	 * @param ctx the parse tree
+	 */
+	void exitStrideList(MlirParser.StrideListContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MlirParser#stridedLayout}.
+	 * @param ctx the parse tree
+	 */
+	void enterStridedLayout(MlirParser.StridedLayoutContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MlirParser#stridedLayout}.
+	 * @param ctx the parse tree
+	 */
+	void exitStridedLayout(MlirParser.StridedLayoutContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link MlirParser#type}.
 	 * @param ctx the parse tree
