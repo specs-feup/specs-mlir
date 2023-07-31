@@ -402,6 +402,18 @@ public class MlirBaseListener implements MlirListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterDimensionListUnranked(MlirParser.DimensionListUnrankedContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitDimensionListUnranked(MlirParser.DimensionListUnrankedContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterNoneType(MlirParser.NoneTypeContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -529,6 +541,42 @@ public class MlirBaseListener implements MlirListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitTypeListParens(MlirParser.TypeListParensContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterTensorElementType(MlirParser.TensorElementTypeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitTensorElementType(MlirParser.TensorElementTypeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterUnrankedTensorType(MlirParser.UnrankedTensorTypeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitUnrankedTensorType(MlirParser.UnrankedTensorTypeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRankedTensorType(MlirParser.RankedTensorTypeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRankedTensorType(MlirParser.RankedTensorTypeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

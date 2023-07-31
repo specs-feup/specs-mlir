@@ -28,7 +28,8 @@ SIGNLESS_INT_TYPE : 'i' INTTYPE_WIDTH;
 
 BARE_ID : (LETTER | [_]) (LETTER | DIGIT | [_$.])*;
 
-RANKED_DIMENSION : [0-9]'x';
+RANKED_DIMENSION   : [0-9]'x';
+UNRANKED_DIMENSION : '*x' ;
 
 WS : [ \t\r\n]+ -> skip ;
 LINE_COMMENT : '//' ~[\r\n]* -> skip ;
@@ -93,7 +94,8 @@ blockLabel         : blockId=CARET_ID blockArgList? ':';
 block              : blockLabel operation+;
 
 /// DIMENSIONS
-dimensionListRanked : (RANKED_DIMENSION)*;
+dimensionListRanked   : (RANKED_DIMENSION)*;
+dimensionListUnranked : UNRANKED_DIMENSION ;
 
 /// TYPES
 noneType            : value='none';
@@ -110,7 +112,10 @@ tupleType           : 'tuple' '<' type '>';
 functionType   : (type | typeListParens) '->' (type | typeListParens);
 typeListParens : '(' ')' | '(' (values+=type (',' values+=type)*) ')';
 
-tensorType : 'tensor' '<' dimensionListRanked floatType '>';
+tensorElementType  : floatType | integerType ;
+unrankedTensorType : 'tensor' '<' dimensionListUnranked tensorElementType '>';
+rankedTensorType   : 'tensor' '<' dimensionListRanked tensorElementType '>' ;
+tensorType         : unrankedTensorType | rankedTensorType;
 
 // TODO: Add more types
 type

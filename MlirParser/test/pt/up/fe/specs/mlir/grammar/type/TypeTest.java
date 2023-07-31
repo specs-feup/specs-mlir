@@ -124,7 +124,18 @@ public class TypeTest {
     }
 
     @Test
-    public void testTensorType() {
-        // TODO: add tests for 'tensor' type
+    public void testUnrankedTensorType() {
+        var node = ((MlirParser.TensorTypeContext) AntlrUtils.parse("tensor<*xf32>", "tensorType"));
+
+        Assertions.assertEquals(TypeUtils.dimlist(node), "*x");
+        Assertions.assertEquals(TypeUtils.elemtype(node), "f32");
+    }
+
+    @Test
+    public void testRankedTensorType() {
+        var node = ((MlirParser.TensorTypeContext) AntlrUtils.parse("tensor<2x3xf32>", "tensorType"));
+
+        Assertions.assertEquals(TypeUtils.dimlist(node), "2x3x");
+        Assertions.assertEquals(TypeUtils.elemtype(node), "f32");
     }
 }

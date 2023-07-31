@@ -334,6 +334,16 @@ public interface MlirListener extends ParseTreeListener {
 	 */
 	void exitDimensionListRanked(MlirParser.DimensionListRankedContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link MlirParser#dimensionListUnranked}.
+	 * @param ctx the parse tree
+	 */
+	void enterDimensionListUnranked(MlirParser.DimensionListUnrankedContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MlirParser#dimensionListUnranked}.
+	 * @param ctx the parse tree
+	 */
+	void exitDimensionListUnranked(MlirParser.DimensionListUnrankedContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link MlirParser#noneType}.
 	 * @param ctx the parse tree
 	 */
@@ -443,6 +453,36 @@ public interface MlirListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitTypeListParens(MlirParser.TypeListParensContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MlirParser#tensorElementType}.
+	 * @param ctx the parse tree
+	 */
+	void enterTensorElementType(MlirParser.TensorElementTypeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MlirParser#tensorElementType}.
+	 * @param ctx the parse tree
+	 */
+	void exitTensorElementType(MlirParser.TensorElementTypeContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MlirParser#unrankedTensorType}.
+	 * @param ctx the parse tree
+	 */
+	void enterUnrankedTensorType(MlirParser.UnrankedTensorTypeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MlirParser#unrankedTensorType}.
+	 * @param ctx the parse tree
+	 */
+	void exitUnrankedTensorType(MlirParser.UnrankedTensorTypeContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MlirParser#rankedTensorType}.
+	 * @param ctx the parse tree
+	 */
+	void enterRankedTensorType(MlirParser.RankedTensorTypeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MlirParser#rankedTensorType}.
+	 * @param ctx the parse tree
+	 */
+	void exitRankedTensorType(MlirParser.RankedTensorTypeContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link MlirParser#tensorType}.
 	 * @param ctx the parse tree
