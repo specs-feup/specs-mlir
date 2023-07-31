@@ -133,9 +133,13 @@ public class TypeTest {
 
     @Test
     public void testRankedTensorType() {
-        var node = ((MlirParser.TensorTypeContext) AntlrUtils.parse("tensor<2x3xf32>", "tensorType"));
+        var n1 = ((MlirParser.TensorTypeContext) AntlrUtils.parse("tensor<2x3xf32>", "tensorType"));
+        var n2 = ((MlirParser.TensorTypeContext) AntlrUtils.parse("tensor<?x3xui32>", "tensorType"));
 
-        Assertions.assertEquals(TypeUtils.dimlist(node), "2x3x");
-        Assertions.assertEquals(TypeUtils.elemtype(node), "f32");
+        Assertions.assertEquals(TypeUtils.dimlist(n1), "2x3x");
+        Assertions.assertEquals(TypeUtils.dimlist(n2), "?x3x");
+
+        Assertions.assertEquals(TypeUtils.elemtype(n1), "f32");
+        Assertions.assertEquals(TypeUtils.elemtype(n2), "ui32");
     }
 }

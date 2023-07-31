@@ -28,7 +28,7 @@ SIGNLESS_INT_TYPE : 'i' INTTYPE_WIDTH;
 
 BARE_ID : (LETTER | [_]) (LETTER | DIGIT | [_$.])*;
 
-RANKED_DIMENSION   : [0-9]'x';
+RANKED_DIMENSION   : ([0-9] | '?')'x';
 UNRANKED_DIMENSION : '*x' ;
 
 WS : [ \t\r\n]+ -> skip ;
