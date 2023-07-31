@@ -71,10 +71,10 @@ operation : opResultList?  genericOperation trailingLocation?; // TODO customOpe
 genericOperation
     : name=STRING_LITERAL '(' valueUseList? ')' successorList? dictionaryProperties? regionList? dictionaryAttribute? ':' functionType;
 
-successorList    :  '[' successor (',' successor)* ']';
+successorList    : '[' successor (',' successor)* ']';
 successor        : value=CARET_ID;
 opResult         : value=VALUE_ID (':' integerLiteral)?;
-opResultList     :  opResult (',' opResult)* '=';
+opResultList     : opResult (',' opResult)* '=';
 
 trailingLocation : 'loc' '(' location ')';
 
@@ -108,7 +108,7 @@ complexType         : 'complex' '<' type '>';
 tupleType           : 'tuple' '<' type '>';
 
 functionType   : (type | typeListParens) '->' (type | typeListParens);
-typeListParens :'(' (type (',' type)*) ')';
+typeListParens : '(' ')' | '(' (values+=type (',' values+=type)*) ')';
 
 tensorType : 'tensor' '<' dimensionListRanked floatType '>';
 

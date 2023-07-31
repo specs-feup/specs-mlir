@@ -51,43 +51,43 @@ public class TypeTest {
 
     @Test
     public void testFunctionTypeNoArgsNoReturn() {
-        var node = ((MlirParser.FloatTypeContext) AntlrUtils.parse("() -> ()", "functionType"));
+        var node = ((MlirParser.FunctionTypeContext) AntlrUtils.parse("() -> ()", "functionType"));
 
     }
 
     @Test
     public void testFunctionTypeNoArgsSingleReturn() {
-        var node = ((MlirParser.FloatTypeContext) AntlrUtils.parse("() -> f32", "functionType"));
+        var node = ((MlirParser.FunctionTypeContext) AntlrUtils.parse("() -> f32", "functionType"));
     }
 
     @Test
     public void testFunctionTypeNoArgsListReturn() {
-        var node = ((MlirParser.FloatTypeContext) AntlrUtils.parse("() -> (f32, i32)", "functionType"));
+        var node = ((MlirParser.FunctionTypeContext) AntlrUtils.parse("() -> (f32, i32)", "functionType"));
     }
 
     @Test
     public void testFunctionTypeSingleArgSingleReturn() {
-        var node = ((MlirParser.FloatTypeContext) AntlrUtils.parse("f32 -> f32", "functionType"));
+        var node = ((MlirParser.FunctionTypeContext) AntlrUtils.parse("f32 -> f32", "functionType"));
     }
 
     @Test
     public void testFunctionTypeSingleArgListReturn() {
-        var node = ((MlirParser.FloatTypeContext) AntlrUtils.parse("f32 -> (f32, i32)", "functionType"));
+        var node = ((MlirParser.FunctionTypeContext) AntlrUtils.parse("f32 -> (f32, i32)", "functionType"));
     }
 
     @Test
     public void testFunctionTypeListArgsNoReturn() {
-        var node = ((MlirParser.FloatTypeContext) AntlrUtils.parse("(f32, i32) -> ()", "functionType"));
+        var node = ((MlirParser.FunctionTypeContext) AntlrUtils.parse("(f32, i32) -> ()", "functionType"));
     }
 
     @Test
     public void testFunctionTypeListArgsSingleReturn() {
-        var node = ((MlirParser.FloatTypeContext) AntlrUtils.parse("(f32, i32) -> f32", "functionType"));
+        var node = ((MlirParser.FunctionTypeContext) AntlrUtils.parse("(f32, i32) -> f32", "functionType"));
     }
 
     @Test
     public void testFunctionTypeListArgsListReturn() {
-        var node = ((MlirParser.FloatTypeContext) AntlrUtils.parse("(f32, i32) -> (f32, i32)", "functionType"));
+        var node = ((MlirParser.FunctionTypeContext) AntlrUtils.parse("(f32, i32) -> (f32, i32)", "functionType"));
     }
 
     @Test
