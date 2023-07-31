@@ -534,6 +534,36 @@ public interface MlirListener extends ParseTreeListener {
 	 */
 	void exitStridedLayout(MlirParser.StridedLayoutContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link MlirParser#rankedMemrefType}.
+	 * @param ctx the parse tree
+	 */
+	void enterRankedMemrefType(MlirParser.RankedMemrefTypeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MlirParser#rankedMemrefType}.
+	 * @param ctx the parse tree
+	 */
+	void exitRankedMemrefType(MlirParser.RankedMemrefTypeContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MlirParser#unrankedMemrefType}.
+	 * @param ctx the parse tree
+	 */
+	void enterUnrankedMemrefType(MlirParser.UnrankedMemrefTypeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MlirParser#unrankedMemrefType}.
+	 * @param ctx the parse tree
+	 */
+	void exitUnrankedMemrefType(MlirParser.UnrankedMemrefTypeContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MlirParser#memrefType}.
+	 * @param ctx the parse tree
+	 */
+	void enterMemrefType(MlirParser.MemrefTypeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MlirParser#memrefType}.
+	 * @param ctx the parse tree
+	 */
+	void exitMemrefType(MlirParser.MemrefTypeContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link MlirParser#type}.
 	 * @param ctx the parse tree
 	 */

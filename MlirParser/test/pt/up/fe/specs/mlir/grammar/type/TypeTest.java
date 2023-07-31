@@ -145,7 +145,16 @@ public class TypeTest {
 
     @Test
     public void testUnrankedMemrefType() {
+        var node = ((MlirParser.UnrankedMemrefTypeContext) AntlrUtils.parse("memref<*xf32, 8>", "unrankedMemrefType"));
 
+        var dimension = node.dimensionListUnranked().getText();
+        var type = node.tensorMemrefElementType().getText();
+        var memorySpace = node.integerLiteral().getText();
+
+        Assertions.assertEquals(node.getText(), "memref<*xf32,8>");
+        Assertions.assertEquals(dimension, "*x");
+        Assertions.assertEquals(type, "f32");
+        Assertions.assertEquals(memorySpace, "8");
     }
 
     @Test

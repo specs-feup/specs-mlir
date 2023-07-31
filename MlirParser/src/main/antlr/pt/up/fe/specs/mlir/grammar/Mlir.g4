@@ -126,8 +126,11 @@ rankedTensorType         : 'tensor' '<' dimensionListRanked tensorMemrefElementT
 tensorType               : unrankedTensorType | rankedTensorType;
 
 // memref
-strideList    : '[' (dimension (',' dimension)*)? ']';
-stridedLayout : 'offset:' dimension ',' 'strides:' strideList;
+strideList         : '[' (dimension (',' dimension)*)? ']';
+stridedLayout      : 'offset:' dimension ',' 'strides:' strideList;
+rankedMemrefType   : 'memref' '<' dimensionListRanked tensorMemrefElementType (',' stridedLayout)? (',' integerLiteral)? '>';
+unrankedMemrefType : 'memref' '<' dimensionListUnranked tensorMemrefElementType (',' integerLiteral)? '>';
+memrefType         : unrankedMemrefType | rankedMemrefType;
 
 // TODO: Add more types
 type
