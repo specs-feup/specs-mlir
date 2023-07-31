@@ -53,41 +53,64 @@ public class TypeTest {
     public void testFunctionTypeNoArgsNoReturn() {
         var node = ((MlirParser.FunctionTypeContext) AntlrUtils.parse("() -> ()", "functionType"));
 
+        Assertions.assertEquals(TypeUtils.args(node), "()");
+        Assertions.assertEquals(TypeUtils.rets(node), "()");
     }
 
     @Test
     public void testFunctionTypeNoArgsSingleReturn() {
         var node = ((MlirParser.FunctionTypeContext) AntlrUtils.parse("() -> f32", "functionType"));
+
+        Assertions.assertEquals(TypeUtils.args(node), "()");
+        Assertions.assertEquals(TypeUtils.rets(node), "f32");
     }
 
     @Test
     public void testFunctionTypeNoArgsListReturn() {
         var node = ((MlirParser.FunctionTypeContext) AntlrUtils.parse("() -> (f32, i32)", "functionType"));
+
+        Assertions.assertEquals(TypeUtils.args(node), "()");
+        Assertions.assertEquals(TypeUtils.rets(node), "(f32,i32)");
     }
 
     @Test
     public void testFunctionTypeSingleArgSingleReturn() {
         var node = ((MlirParser.FunctionTypeContext) AntlrUtils.parse("f32 -> f32", "functionType"));
+
+        Assertions.assertEquals(TypeUtils.args(node), "f32");
+        Assertions.assertEquals(TypeUtils.rets(node), "f32");
     }
 
     @Test
     public void testFunctionTypeSingleArgListReturn() {
         var node = ((MlirParser.FunctionTypeContext) AntlrUtils.parse("f32 -> (f32, i32)", "functionType"));
+
+        Assertions.assertEquals(TypeUtils.args(node), "f32");
+        Assertions.assertEquals(TypeUtils.rets(node), "(f32,i32)");
     }
 
     @Test
     public void testFunctionTypeListArgsNoReturn() {
         var node = ((MlirParser.FunctionTypeContext) AntlrUtils.parse("(f32, i32) -> ()", "functionType"));
+
+        Assertions.assertEquals(TypeUtils.args(node), "(f32,i32)");
+        Assertions.assertEquals(TypeUtils.rets(node), "()");
     }
 
     @Test
     public void testFunctionTypeListArgsSingleReturn() {
         var node = ((MlirParser.FunctionTypeContext) AntlrUtils.parse("(f32, i32) -> f32", "functionType"));
+
+        Assertions.assertEquals(TypeUtils.args(node), "(f32,i32)");
+        Assertions.assertEquals(TypeUtils.rets(node), "f32");
     }
 
     @Test
     public void testFunctionTypeListArgsListReturn() {
         var node = ((MlirParser.FunctionTypeContext) AntlrUtils.parse("(f32, i32) -> (f32, i32)", "functionType"));
+
+        Assertions.assertEquals(TypeUtils.args(node), "(f32,i32)");
+        Assertions.assertEquals(TypeUtils.rets(node), "(f32,i32)");
     }
 
     @Test
