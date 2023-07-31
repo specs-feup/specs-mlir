@@ -64,31 +64,28 @@ valueUseList : values+=valueUse (',' values+=valueUse)*;
 // TODO: add some of the builtin-attributes (e.g., IntegerAttr)
 dictionaryProperties : '<' dictionaryAttribute '>';
 dictionaryAttribute  : '{' (attributesEntry (',' attributesEntry)*)? '}';
-attributesEntry      : attributesProperty '=' (integerLiteral | floatLiteral | stringLiteral | booleanLiteral);
+attributesEntry      : attributesProperty '=' (attributesValue | stringLiteral | booleanLiteral);
 attributesProperty   : value=BARE_ID;
+attributesValue
+    : integerAttribute
+    | floatAttribute
+    ;
+
+// some builtin attributes
+integerAttribute
+    : (integerLiteral (':' (indexType | integerType))?)
+    | 'true'
+    | 'false'
+    ;
+
+floatAttribute
+    : floatLiteral (':' floatType)?
+    | HEX_LITERAL ':' floatType
+    ;
 
 /// REGIONS
 region     : '{' operation+ block* '}';
 regionList : '(' region (',' region)* ')';
-
-/// OPERATIONS
-// TODO: fix opResult in order to support inputs like '%result:2'
-operation : opResultList?  genericOperation trailingLocation?; // TODO customOperation not supported
-
-genericOperation
-    : name=STRING_LITERAL '(' valueUseList? ')' successorList? dictionaryProperties? regionList? dictionaryAttribute? ':' functionType;
-
-successorList : '[' successor (',' successor)* ']';
-successor     : value=CARET_ID;
-opResult      : value=VALUE_ID (':' integerLiteral)?;
-opResultList  : opResult (',' opResult)* '=';
-
-trailingLocation : 'loc' '(' location ')';
-
-location
-    : (file=STRING_LITERAL ':' line=DECIMAL_LITERAL ':' col=DECIMAL_LITERAL) #KnownLocation
-    |'unknown' #UnknownLocation
-    ;
 
 //customOperation: BARE_ID; // TODO
 
@@ -143,4 +140,23 @@ type
     | complexType
     | tupleType
     | tensorType
+    ;
+
+/// OPERATIONS
+// TODO: fix opResult in order to support inputs like '%result:2'
+operation : opResultList?  genericOperation trailingLocation?; // TODO customOperation not supported
+
+genericOperation
+    : name=STRING_LITERAL '(' valueUseList? ')' successorList? dictionaryProperties? regionList? dictionaryAttribute? ':' functionType;
+
+successorList : '[' successor (',' successor)* ']';
+successor     : value=CARET_ID;
+opResult      : value=VALUE_ID (':' integerLiteral)?;
+opResultList  : opResult (',' opResult)* '=';
+
+trailingLocation : 'loc' '(' location ')';
+
+location
+    : (file=STRING_LITERAL ':' line=DECIMAL_LITERAL ':' col=DECIMAL_LITERAL) #KnownLocation
+    |'unknown' #UnknownLocation
     ;
