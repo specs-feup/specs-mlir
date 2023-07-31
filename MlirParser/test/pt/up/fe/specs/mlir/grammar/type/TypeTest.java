@@ -172,4 +172,16 @@ public class TypeTest {
         Assertions.assertEquals(offset, "5");
         Assertions.assertEquals(strides, "[6,7]");
     }
+
+    @Test
+    public void testVectorType() {
+        var node = ((MlirParser.VectorTypeContext) AntlrUtils.parse("vector<2x3xf32>", "vectorType"));
+
+        var dimension = node.dimensionListRanked().getText();
+        var type = node.tensorMemrefElementType().getText();
+
+        Assertions.assertEquals(node.getText(), "vector<2x3xf32>");
+        Assertions.assertEquals(dimension, "2x3x");
+        Assertions.assertEquals(type, "f32");
+    }
 }

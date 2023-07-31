@@ -514,6 +514,16 @@ public interface MlirListener extends ParseTreeListener {
 	 */
 	void exitTensorType(MlirParser.TensorTypeContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link MlirParser#vectorType}.
+	 * @param ctx the parse tree
+	 */
+	void enterVectorType(MlirParser.VectorTypeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MlirParser#vectorType}.
+	 * @param ctx the parse tree
+	 */
+	void exitVectorType(MlirParser.VectorTypeContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link MlirParser#strideList}.
 	 * @param ctx the parse tree
 	 */

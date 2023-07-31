@@ -101,8 +101,7 @@ block              : blockLabel operation+;
 
 /// DIMENSIONS
 dimension             : decimalLiteral | '?' ;
-//dimensionListRanked   : (dimension DIMENSION_SEPARATOR)*;
-dimensionListRanked   : value+=RANKED_DIMENSION*;
+dimensionListRanked   : value=RANKED_DIMENSION*;
 dimensionListUnranked : value=UNRANKED_DIMENSION ;
 
 /// TYPES
@@ -124,6 +123,9 @@ tensorMemrefElementType  : floatType | integerType ;
 unrankedTensorType       : 'tensor' '<' dimensionListUnranked tensorMemrefElementType '>';
 rankedTensorType         : 'tensor' '<' dimensionListRanked tensorMemrefElementType '>' ;
 tensorType               : unrankedTensorType | rankedTensorType;
+
+// vector
+vectorType : 'vector' '<' dimensionListRanked tensorMemrefElementType '>';
 
 // memref
 strideList         : '[' (dimension (',' dimension)*)? ']';
