@@ -159,6 +159,17 @@ public class TypeTest {
 
     @Test
     public void testRankedMemrefType() {
+        var node = ((MlirParser.RankedMemrefTypeContext) AntlrUtils.parse("memref<?xf32, offset: 5, strides: [6, 7]>", "rankedMemrefType"));
 
+        var dimension = node.dimensionListRanked().getText();
+        var type = node.tensorMemrefElementType().getText();
+        var offset = node.stridedLayout().dimension().getText();
+        var strides = node.stridedLayout().strideList().getText();
+
+        Assertions.assertEquals(node.getText(), "memref<?xf32,offset:5,strides:[6,7]>");
+        Assertions.assertEquals(dimension, "?x");
+        Assertions.assertEquals(type, "f32");
+        Assertions.assertEquals(offset, "5");
+        Assertions.assertEquals(strides, "[6,7]");
     }
 }
